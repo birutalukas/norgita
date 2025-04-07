@@ -1,0 +1,27 @@
+name: Deploy Backend (Strapi) to Railway
+
+on:
+    push:
+        paths:
+          - 'backend/**'
+        branches:
+          - main
+
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+          - uses: actions/checkout@v3
+
+          - name: Install Railway CLI
+        run: npm install -g railway
+
+          - name: Login Railway (via token)
+        run: railway login --token=${{ secrets.RAILWAY_TOKEN }}
+
+          - name: Deploy to Railway
+        run: |
+          cd backend
+          railway up
