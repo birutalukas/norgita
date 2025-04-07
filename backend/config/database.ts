@@ -46,15 +46,15 @@ export default ({
               : defaultValue;
     };
 
-    const client: string = env("DATABASE_CLIENT", "sqlite") as string;
+    const client: string = "postgres"; // Hardcode to PostgreSQL since we are using Railway
 
     const connections: Record<string, DatabaseConfig> = {
         postgres: {
             connection: {
-                connectionString: env("DATABASE_URL"),
-                host: env("DATABASE_HOST", "localhost") as string,
+                connectionString: env("DATABASE_URL"), // Should be set in Railway
+                host: env("DATABASE_HOST", "localhost") as string, // Can be left to Railway's value if it’s in DATABASE_URL
                 port: parseIntEnv("DATABASE_PORT", 5432),
-                database: env("DATABASE_NAME", "strapi") as string,
+                database: env("DATABASE_NAME", "strapi") as string, // Get from DATABASE_URL if available
                 user: env("DATABASE_USERNAME", "strapi") as string,
                 password: env("DATABASE_PASSWORD", "strapi") as string,
                 ssl: parseBoolEnv("DATABASE_SSL", false) && {
