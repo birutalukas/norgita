@@ -23,7 +23,7 @@ jobs:
             - name: Install Dependencies
               run: |
                   cd backend
-                  npm install --production
+                  npm install --omit=dev
 
             - name: Deploy to Railway
               run: |
