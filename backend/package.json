@@ -4,7 +4,6 @@
     "private": true,
     "description": "A Strapi application",
     "scripts": {
-        "postinstall": "npm install --production",
         "build": "strapi build",
         "console": "strapi console",
         "deploy": "strapi deploy",

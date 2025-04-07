@@ -20,7 +20,12 @@ jobs:
             - name: Set Railway API Key
               run: echo "RAILWAY_API_KEY=${{ secrets.RAILWAY_TOKEN }}" >> $GITHUB_ENV
 
+            - name: Install Dependencies
+              run: |
+                  cd backend
+                  npm install --production
+
             - name: Deploy to Railway
               run: |
                   cd backend
-                  railway up
+                  railway up --ci
