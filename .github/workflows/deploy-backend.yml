@@ -23,4 +23,4 @@ jobs:
             - name: Deploy to Railway
               run: |
                   cd backend
-                  railway up --ci
+                  railway up
