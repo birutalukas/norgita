@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LanguageSelection from "../views/LanguageSelection.vue";
 import GameSelection from "../views/GameSelection.vue";
-import Flashcards from "../views/games/Flashcards.vue";
+import Flashcards from "../views/games/FlashCards.vue";
 
 const routes = [
     { path: "/", component: LanguageSelection },
