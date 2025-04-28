@@ -1,20 +1,15 @@
 <template>
     <Header />
 
-    <div class="bg-grey-100 min-h-screen">
-        <div class="container">
-            <div class="w-full py-16 sm:py-20 md:py-28">
-                <Suspense>
-                    <template #default>
-                        <router-view />
-                    </template>
-                    <template #fallback>
-                        <div>Loading...</div>
-                    </template>
-                </Suspense>
-            </div>
-        </div>
-    </div>
+    <Suspense>
+        <template #default>
+            <router-view />
+        </template>
+        <template #fallback>
+            <div>Loading...</div>
+        </template>
+    </Suspense>
+
     <Footer />
 </template>
 
