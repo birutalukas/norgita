@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-[#2A4A6C] py-6 h-32 text-white z-50 relative">
+    <header class="bg-theme-blude py-6 h-32 text-white z-50 relative">
         <div class="container">
             <div class="flex items-center justify-between">
                 <div>
@@ -60,7 +60,7 @@
                         <button>Apie mus</button>
                         <button>Atsiliepimai</button>
                         <button>Kontaktai</button>
-                        <a href="">
+                        <a href="https://facebook.com" target="_blank">
                             <img
                                 :src="facebook"
                                 alt="Facebook"

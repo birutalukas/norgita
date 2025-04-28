@@ -49,7 +49,7 @@
                             :class="{
                                 'bg-green-500 text-white font-semibold rounded-xl shadow-md hover:bg-green-600':
                                     word.status === 'known',
-                                'bg-[#2A4A6C] text-white font-semibold rounded-xl shadow-md hover:bg-blue-600':
+                                'bg-theme-blude text-white font-semibold rounded-xl shadow-md hover:bg-blue-600':
                                     word.status !== 'known',
                             }"
                         >

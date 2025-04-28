@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-[#193553] text-white">
+    <footer class="bg-theme-blue-dark text-white">
         <div class="container py-16">
             <div class="flex items-start">
                 <div>

@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 
-import { fetchData } from "@/api"; // Adjust path as needed
-
+import { fetchData } from "@/api";
 export const useWordsStore = defineStore("flashcards", {
     state: () => ({
         selectedLang: "LT-NO", // Or 'NO-LT'

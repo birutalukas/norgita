@@ -1,6 +1,7 @@
 <template>
     <Hero v-if="heroData" :data="heroData" />
     <AboutMe v-if="aboutData" :data="aboutData" />
+    <Services />
 </template>
 
 <script setup>
@@ -9,6 +10,7 @@ import { ref, onMounted } from "vue";
 import { fetchData } from "@/api";
 import Hero from "@/components/Hero.vue";
 import AboutMe from "@/components/AboutMe.vue";
+import Services from "@/components/Services.vue";
 
 const heroData = ref([]);
 const aboutData = ref([]);
@@ -23,9 +25,9 @@ onMounted(async () => {
         image: response.data.HeroImage,
     };
     aboutData.value = {
-        title: response.data.introTitle,
+        title: response.data.IntroTitle,
         heading: response.data.IntroHeading,
-        content: response.data.IntroContent,
+        description: response.data.IntroContent,
         image: response.data.IntroImage,
     };
 });
