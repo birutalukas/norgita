@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LanguageSelection from "../views/LanguageSelection.vue";
+import Home from "../views/Home.vue";
 import GameSelection from "../views/GameSelection.vue";
 import Flashcards from "../views/games/FlashCards.vue";
 
 const routes = [
-    { path: "/", component: LanguageSelection },
-    { path: "/games", component: GameSelection },
-    { path: "/game/flashcards", component: Flashcards },
+    { path: "/", component: Home },
+    { path: "/mokymai", component: GameSelection },
+    { path: "/mokymai/flashcards", component: Flashcards },
 ];
 
 const router = createRouter({

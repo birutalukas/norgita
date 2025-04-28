@@ -404,6 +404,7 @@ export interface ApiFlashcardFlashcard extends Struct.CollectionTypeSchema {
 export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   collectionName: 'homepages';
   info: {
+    description: '';
     displayName: 'Homepage';
     pluralName: 'homepages';
     singularName: 'homepage';
@@ -415,8 +416,17 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    HeroDescription: Schema.Attribute.Text;
     HeroImage: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
+    HeroTitle: Schema.Attribute.String;
+    IntroContent: Schema.Attribute.RichText;
+    IntroHeading: Schema.Attribute.String;
+    IntroImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    IntroTitle: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

@@ -16,6 +16,6 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const startGame = (game) => {
-    router.push(`/game/${game}`);
+    router.push(`/mokymai/${game}`);
 };
 </script>

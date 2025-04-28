@@ -45,11 +45,11 @@
 
                         <button
                             @click="toggleStatus(word.id)"
-                            class="min-w-full py-3 mt-8"
+                            class="min-w-full py-3 mt-8 transition-all duration-300"
                             :class="{
                                 'bg-green-500 text-white font-semibold rounded-xl shadow-md hover:bg-green-600':
                                     word.status === 'known',
-                                'bg-blue-500 text-white font-semibold rounded-xl shadow-md hover:bg-blue-600':
+                                'bg-[#2A4A6C] text-white font-semibold rounded-xl shadow-md hover:bg-blue-600':
                                     word.status !== 'known',
                             }"
                         >

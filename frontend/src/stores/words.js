@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-import axios from "axios";
+
+import { fetchData } from "@/api"; // Adjust path as needed
 
 export const useWordsStore = defineStore("flashcards", {
     state: () => ({
@@ -17,29 +18,24 @@ export const useWordsStore = defineStore("flashcards", {
     actions: {
         async fetchWords() {
             try {
-                const response = await axios.get(
-                    "https://learn-language-app-production.up.railway.app/api/flashcards"
-                );
+                const data = await fetchData("/flashcards");
+                const words = data.data;
 
-                const words = response.data.data; // Data array from the API
-
-                // Dynamically categorizing words based on the selected language
                 this.words["LT-NO"] = words.map((word) => ({
                     id: word.id,
-                    main: word.Word, // "Word" will be the main word for LT-NO
-                    translation: word.Translation, // "Translation" will be the translation for LT-NO
+                    main: word.Word,
+                    translation: word.Translation,
                 }));
 
                 this.words["NO-LT"] = words.map((word) => ({
                     id: word.id,
-                    main: word.Translation, // "Translation" will be the main word for NO-LT
-                    translation: word.Word, // "Word" will be the translation for NO-LT
+                    main: word.Translation,
+                    translation: word.Word,
                 }));
             } catch (error) {
-                console.error("Error fetching words:", error);
+                // Already logged in fetchData
             }
         },
-
         setLanguage(lang) {
             this.selectedLang = lang;
         },

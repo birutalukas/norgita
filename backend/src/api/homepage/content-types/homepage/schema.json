@@ -4,20 +4,46 @@
   "info": {
     "singularName": "homepage",
     "pluralName": "homepages",
-    "displayName": "Homepage"
+    "displayName": "Homepage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
     "HeroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
+      ]
+    },
+    "HeroTitle": {
+      "type": "string"
+    },
+    "HeroDescription": {
+      "type": "text"
+    },
+    "IntroTitle": {
+      "type": "string"
+    },
+    "IntroHeading": {
+      "type": "string"
+    },
+    "IntroContent": {
+      "type": "richtext"
+    },
+    "IntroImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
       ],
       "type": "media",
-      "multiple": false,
-      "required": true
+      "multiple": true
     }
   }
 }

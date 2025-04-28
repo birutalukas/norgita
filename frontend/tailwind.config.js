@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+import tailwindcssFontInter from "tailwindcss-font-inter";
+
 export default {
     content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
     theme: {
@@ -9,5 +12,5 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [tailwindcssFontInter],
 };

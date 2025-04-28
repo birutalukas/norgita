@@ -25,6 +25,6 @@ const router = useRouter();
 
 const selectLanguage = (lang) => {
     store.setLanguage(lang);
-    router.push("/games");
+    router.push("/mokymai");
 };
 </script>
