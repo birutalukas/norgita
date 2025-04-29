@@ -23,6 +23,7 @@ onMounted(async () => {
         title: response.data.HeroTitle,
         description: response.data.HeroDescription,
         image: response.data.HeroImage,
+        cta: true,
     };
     aboutData.value = {
         title: response.data.IntroTitle,

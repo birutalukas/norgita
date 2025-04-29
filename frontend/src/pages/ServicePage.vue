@@ -37,6 +37,7 @@ onMounted(async () => {
         image: service.value.Cover,
         title: service.value.Title,
         description: service.value.ShortDescription,
+        cta: false,
     };
     console.log(service);
 });

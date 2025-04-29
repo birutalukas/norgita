@@ -22,7 +22,9 @@
                 >
                     {{ paragraph }}
                 </p>
-                <Button link="/" title="Registruotis" />
+                <div v-if="data.cta">
+                    <Button link="/" title="Registruotis" />
+                </div>
             </div>
         </div>
     </section>
