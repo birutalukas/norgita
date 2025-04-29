@@ -452,8 +452,9 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+    CardCover: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
+    Content: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -463,6 +464,8 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
       'api::service.service'
     > &
       Schema.Attribute.Private;
+    PageCover: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     ShortDescription: Schema.Attribute.String;
     Title: Schema.Attribute.String;
