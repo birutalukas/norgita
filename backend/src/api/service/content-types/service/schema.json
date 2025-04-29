@@ -27,16 +27,20 @@
       "type": "string"
     },
     "PageCover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "Content": {
       "type": "blocks"
+    },
+    "LearningPage": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
