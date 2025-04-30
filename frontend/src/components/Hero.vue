@@ -1,6 +1,6 @@
 <template>
     <section
-        class="section h-[calc(100vh-8rem)] flex items-center justify-start"
+        class="section h-[calc(100vh-8rem)] flex items-center justify-start overflow-hidden"
         style="background-image: url('{{ data?.image?.url }}') ;"
     >
         <img

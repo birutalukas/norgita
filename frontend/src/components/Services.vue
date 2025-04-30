@@ -14,19 +14,19 @@
                 >
                     <div class="mb-8">
                         <img
-                            :src="service.Cover.url"
+                            :src="service.CardCover?.url"
                             class="mb-8 w-full h-[15rem] object-cover"
                         />
 
                         <h3
                             class="text-theme-warm text-[1.5rem] leading-8 tracking-[0.07em] font-[700] mb-3"
                         >
-                            {{ service.Title }}
+                            {{ service?.Title }}
                         </h3>
                         <p
                             class="text-white text-[1.125rem] leading-6 tracking-[-0.025rem] font-[400]"
                         >
-                            {{ service.ShortDescription }}
+                            {{ service?.ShortDescription }}
                         </p>
                     </div>
                     <Button

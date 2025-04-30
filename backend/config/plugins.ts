@@ -13,4 +13,21 @@ export default ({ env }) => ({
             },
         },
     },
+    email: {
+        config: {
+            provider: "nodemailer", // We will use Nodemailer as the email provider
+            providerOptions: {
+                host: process.env.SMTP_HOST, // SMTP server host
+                port: parseInt(process.env.SMTP_PORT), // SMTP port (587 for TLS)
+                auth: {
+                    user: process.env.SMTP_USER, // SMTP username
+                    pass: process.env.SMTP_PASS, // SMTP password
+                },
+            },
+            settings: {
+                defaultFrom: process.env.EMAIL_FROM, // Sender email
+                defaultReplyTo: process.env.EMAIL_FROM, // Default reply-to email
+            },
+        },
+    },
 });

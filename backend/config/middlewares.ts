@@ -2,7 +2,15 @@ export default [
     "strapi::logger",
     "strapi::errors",
     "strapi::security",
-    "strapi::cors",
+    {
+        name: "strapi::cors",
+        config: {
+            origin: ["http://localhost:5173"], // your frontend dev server
+            methods: ["GET", "POST", "PUT", "DELETE"],
+            headers: ["Content-Type", "Authorization"],
+            credentials: true,
+        },
+    },
     "strapi::poweredBy",
     "strapi::query",
     "strapi::body",

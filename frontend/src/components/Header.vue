@@ -51,15 +51,13 @@
                         </button>
                     </div>
                     <div class="flex items-center gap-8">
-                        <button
-                            @click="router.push('/mokymai')"
-                            class="text-lg"
-                        >
+                        <button @click="router.push('/')" class="text-lg">
                             Mokymai ir paslaugos
                         </button>
-                        <button>Apie mus</button>
-                        <button>Atsiliepimai</button>
-                        <button>Kontaktai</button>
+
+                        <button @click="router.push('/kontaktai')">
+                            Kontaktai
+                        </button>
                         <a href="https://facebook.com" target="_blank">
                             <img
                                 :src="facebook"
@@ -81,6 +79,9 @@ import facebook from "@/assets/facebook.svg";
 import lt from "@/assets/lt.svg";
 import no from "@/assets/no.svg";
 import { useLanguageStore } from "@/stores/languageStore"; // Import the store
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 const languageStore = useLanguageStore();
 
 const { setLanguage } = languageStore;
