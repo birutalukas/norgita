@@ -39,6 +39,6 @@ onMounted(async () => {
         description: service.value.ShortDescription,
         cta: false,
     };
-    console.log(service);
+    console.log("serviceSingle", service);
 });
 </script>
