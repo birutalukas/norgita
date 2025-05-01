@@ -7,7 +7,7 @@ export default [
         config: {
             origin: [
                 "http://localhost:5173",
-                "https://learn-language-app-w7rp.vercel.app/",
+                "https://learn-language-app-w7rp.vercel.app",
             ], // your frontend dev server
             methods: ["GET", "POST", "PUT", "DELETE"],
             headers: ["Content-Type", "Authorization"],
