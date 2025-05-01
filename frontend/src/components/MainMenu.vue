@@ -1,6 +1,15 @@
 <template>
-    <button @click="router.push('/')" class="text-white text-nowrap">
+    <button
+        @click="router.push({ path: '/', hash: '#mokymai-ir-paslaugos' })"
+        class="text-white text-nowrap"
+    >
         Mokymai ir paslaugos
+    </button>
+    <button
+        @click="router.push({ path: '/', hash: '#apie-mus' })"
+        class="text-white text-nowrap"
+    >
+        Apie mus
     </button>
 
     <button @click="router.push('/kontaktai')" class="text-white text-nowrap">

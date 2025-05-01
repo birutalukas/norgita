@@ -16,11 +16,25 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (to.hash) {
+            // Scroll to element with matching ID
+            return {
+                el: to.hash,
+                behavior: "smooth",
+            };
+        } else {
+            return { top: 0 };
+        }
+    },
 });
 
 router.beforeEach((to, from, next) => {
     const loader = useLoaderStore();
-    loader.isLoading = true;
+    // Only set loading if the path actually changed (not just the hash)
+    if (to.path !== from.path) {
+        loader.isLoading = true;
+    }
     next();
 });
 

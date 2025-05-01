@@ -2,10 +2,11 @@
     <div>
         <Hero :data="contactData" />
 
-        <section class="section bg-warm">
+        <section class="section bg-warm" id="susisiekime">
             <div class="container">
                 <h2 class="section-title text-theme-blue md:text-center">
-                    Susisiekime
+                    <span v-if="!mailSent">Susisiekime</span>
+                    <span v-else>Ačiū!</span>
                 </h2>
 
                 <form
@@ -72,8 +73,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { fetchData } from "@/api";
+import { scrollToHash } from "@/scripts/smoothScroll";
+import { useRoute } from "vue-router";
 import { useLoaderStore } from "@/stores/loaderStore";
 import { API_BASE_URL } from "@/api";
 import Hero from "@/components/Hero.vue";
@@ -90,6 +93,8 @@ const form = ref({
 const mailSent = ref(false);
 const loader = useLoaderStore();
 
+const route = useRoute();
+
 onMounted(async () => {
     const response = await fetchData("/contact-page?populate=*");
     contactData.value = {
@@ -101,8 +106,16 @@ onMounted(async () => {
 
     loader.isLoading = false;
 
+    scrollToHash(route);
+
     window.dispatchEvent(new Event("resize"));
 });
+watch(
+    () => route.hash,
+    () => {
+        scrollToHash(route);
+    }
+);
 
 const submitHandler = async () => {
     try {
@@ -118,12 +131,11 @@ const submitHandler = async () => {
         // }
 
         console.log(form.value);
-        alert("Message sent!");
+
         form.value = { name: "", email: "", tel: "", message: "" }; // Reset form
         mailSent.value = true;
     } catch (error) {
         console.error("Error:", error);
-        alert("Something went wrong");
     }
 };
 </script>

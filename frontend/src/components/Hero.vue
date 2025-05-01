@@ -23,7 +23,10 @@
                     {{ paragraph }}
                 </p>
                 <div v-if="data.cta">
-                    <Button link="/" title="Registruotis" />
+                    <Button
+                        :link="{ path: '/kontaktai', hash: '#susisiekime' }"
+                        title="Registruotis"
+                    />
                 </div>
             </div>
         </div>

@@ -1,20 +1,22 @@
 <template>
-    <Hero :data="heroData" />
-    <section class="section bg-theme-warm">
-        <div class="container max-w-[48rem]">
-            <div class="block w-full max-w-[48rem] mx-auto">
-                <h2
-                    class="section-title text-center mb-8 text-theme-blue-light"
-                >
-                    {{ service.Title }}
-                </h2>
+    <div>
+        <Hero :data="heroData" />
+        <section class="section bg-theme-warm">
+            <div class="container max-w-[48rem]">
+                <div class="block w-full max-w-[48rem] mx-auto">
+                    <h2
+                        class="section-title md:text-center mb-8 text-theme-blue-light"
+                    >
+                        {{ service.Title }}
+                    </h2>
 
-                {{ service.ShortDescription }}
+                    {{ service.ShortDescription }}
 
-                <div v-html="renderContent(content)"></div>
+                    <div v-html="renderContent(content)"></div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <script setup>
@@ -35,14 +37,15 @@ const loader = useLoaderStore();
 
 onMounted(async () => {
     console.log("serviceId", serviceId);
-    const response = await fetchData("/services/");
+    const response = await fetchData("/services?populate=*");
 
     service.value = response.data.find(
         (s) => String(s.id) === String(serviceId)
     );
 
+    console.log("service.value", service.value);
     heroData.value = {
-        image: service.value.Cover,
+        image: service.value.PageCover,
         title: service.value.Title,
         description: service.value.ShortDescription,
         cta: false,
@@ -50,6 +53,7 @@ onMounted(async () => {
 
     content.value = service.value.Content;
 
+    console.log(heroData);
     loader.isLoading = false;
     window.dispatchEvent(new Event("resize"));
 });

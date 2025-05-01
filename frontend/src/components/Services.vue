@@ -1,5 +1,5 @@
 <template>
-    <section class="section bg-warm">
+    <section class="section bg-warm" id="mokymai-ir-paslaugos">
         <div class="container">
             <h2 class="section-title text-theme-blue md:text-center">
                 Mokymai ir paslaugos
@@ -49,10 +49,14 @@
 
 <script setup>
 import { fetchData } from "@/api";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
+
 import { useLoaderStore } from "@/stores/loaderStore";
+import { scrollToHash } from "@/scripts/smoothScroll";
 import Button from "./Button.vue";
 
+const route = useRoute();
 const services = ref([]);
 const loader = useLoaderStore();
 
@@ -63,6 +67,15 @@ onMounted(async () => {
 
     loader.isLoading = false;
 
+    scrollToHash(route);
+
     window.dispatchEvent(new Event("resize"));
 });
+
+watch(
+    () => route.hash,
+    () => {
+        scrollToHash(route);
+    }
+);
 </script>

@@ -37,6 +37,12 @@
     .bm-burger-button {
         @apply hidden;
     }
+    footer {
+        button,
+        a {
+            @apply transition-all duration-500 hover:opacity-50;
+        }
+    }
 }
 
 swiper-container,

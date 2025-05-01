@@ -1,5 +1,5 @@
 <template>
-    <section class="section bg-theme-blue-light">
+    <section class="section bg-theme-blue-light" id="apie-mus">
         <div class="container">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="flex-1 mb-10 md:mb-">
@@ -26,9 +26,13 @@
 </template>
 
 <script setup>
-import { marked } from "marked";
+import { useRoute } from "vue-router";
 
-import { computed } from "vue";
+import { marked } from "marked";
+import { computed, watch, onMounted } from "vue";
+import { scrollToHash } from "@/scripts/smoothScroll";
+
+const route = useRoute();
 
 const props = defineProps({
     data: {
@@ -36,6 +40,17 @@ const props = defineProps({
         required: true,
     },
 });
+
+onMounted(async () => {
+    scrollToHash(route);
+});
+watch(
+    () => route.hash,
+    () => {
+        scrollToHash(route);
+    }
+);
+
 function getImageUrl(image) {
     if (!image) return ""; // null or undefined
     if (Array.isArray(image)) {
@@ -44,7 +59,6 @@ function getImageUrl(image) {
     return image.url || "";
 }
 
-console.log("props", props);
 const parsedDescription = computed(() => {
     return marked.parse(props?.data?.description || "");
 });

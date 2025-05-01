@@ -5,6 +5,14 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
     build: {
         dist: "public",
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vue: ["vue", "vue-router", "pinia"],
+                    ui: ["swiper", "lenis", "gsap", "vue3-burger-menu"],
+                },
+            },
+        },
     },
     plugins: [
         vue({
