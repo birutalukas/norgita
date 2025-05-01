@@ -5,7 +5,10 @@ export default [
     {
         name: "strapi::cors",
         config: {
-            origin: ["http://localhost:5173"], // your frontend dev server
+            origin: [
+                "http://localhost:5173",
+                "https://learn-language-app-w7rp.vercel.app/",
+            ], // your frontend dev server
             methods: ["GET", "POST", "PUT", "DELETE"],
             headers: ["Content-Type", "Authorization"],
             credentials: true,
