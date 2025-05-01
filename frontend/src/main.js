@@ -4,6 +4,9 @@ import router from "./router";
 import App from "./App.vue";
 import "./style.css";
 
+import { smoothScroll } from "@/scripts/smoothScroll";
+
+smoothScroll();
 const app = createApp(App);
 
 app.use(createPinia());

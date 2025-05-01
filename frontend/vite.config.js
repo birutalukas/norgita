@@ -12,11 +12,18 @@ export default defineConfig({
                 compilerOptions: {
                     isCustomElement: (tag) =>
                         tag.startsWith("swiper-container") ||
-                        tag.startsWith("swiper-slide"),
+                        tag.startsWith("swiper-slide") ||
+                        tag.startsWith("Menu"),
                 },
             },
         }),
     ],
+    optimizeDeps: {
+        include: ["gsap"], // If Vite has issues resolving gsap, try including it here
+    },
+    define: {
+        "process.env": process.env, // If you need to use environment variables
+    },
     server: {
         proxy: {
             "/api": "http://localhost:1337", // Strapi URL

@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-theme-blude py-6 h-32 text-white z-50 relative">
+    <header class="bg-theme-blue py-6 h-32 text-white z-50 relative">
         <div class="container">
             <div class="flex items-center justify-between">
                 <div>
@@ -25,6 +25,7 @@
                                 height="24"
                             />
                             <span
+                                class="hidden md:block"
                                 :class="{
                                     'opacity-100':
                                         languageStore.currentLang === 'lt',
@@ -40,6 +41,7 @@
                         >
                             <img :src="no" alt="Norsk" width="24" height="24" />
                             <span
+                                class="hidden md:block"
                                 :class="{
                                     'opacity-100':
                                         languageStore.currentLang === 'no',
@@ -50,22 +52,11 @@
                             >
                         </button>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <button @click="router.push('/')" class="text-lg">
-                            Mokymai ir paslaugos
-                        </button>
-
-                        <button @click="router.push('/kontaktai')">
-                            Kontaktai
-                        </button>
-                        <a href="https://facebook.com" target="_blank">
-                            <img
-                                :src="facebook"
-                                alt="Facebook"
-                                width="30"
-                                height="30"
-                            />
-                        </a>
+                    <div class="hidden md:flex items-center gap-8">
+                        <MainMenu />
+                    </div>
+                    <div class="flex md:hidden">
+                        <BurgerMenu />
                     </div>
                 </div>
             </div>
@@ -75,12 +66,11 @@
 
 <script setup>
 import logo from "@/assets/logo.svg";
-import facebook from "@/assets/facebook.svg";
 import lt from "@/assets/lt.svg";
 import no from "@/assets/no.svg";
 import { useLanguageStore } from "@/stores/languageStore"; // Import the store
-import { useRouter } from "vue-router";
-const router = useRouter();
+import MainMenu from "./MainMenu.vue";
+import BurgerMenu from "./BurgerMenu.vue";
 
 const languageStore = useLanguageStore();
 

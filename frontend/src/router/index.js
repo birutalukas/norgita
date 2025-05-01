@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LanguageSelection from "../pages/LanguageSelection.vue";
+import { useLoaderStore } from "../stores/loaderStore";
 import Home from "../pages/Home.vue";
 import GameSelection from "../pages/GameSelection.vue";
 import Flashcards from "../pages/games/FlashCards.vue";
@@ -16,6 +16,12 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    const loader = useLoaderStore();
+    loader.isLoading = true;
+    next();
 });
 
 export default router;

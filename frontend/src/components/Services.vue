@@ -1,16 +1,16 @@
 <template>
     <section class="section bg-warm">
         <div class="container">
-            <h2 class="section-title text-theme-blue text-center">
+            <h2 class="section-title text-theme-blue md:text-center">
                 Mokymai ir paslaugos
             </h2>
             <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-[3.75rem]"
+                class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8 md:mt-16"
             >
                 <div
                     v-for="service in services"
                     :key="service.id"
-                    class="p-5 pb-8 bg-theme-blue-dark text-center flex flex-col justify-between"
+                    class="p-5 pb-8 bg-theme-blue-dark md:text-center flex flex-col justify-between"
                 >
                     <div class="mb-8">
                         <img
@@ -29,9 +29,17 @@
                             {{ service?.ShortDescription }}
                         </p>
                     </div>
+
                     <Button
                         title="Registruotis"
                         :link="`/paslaugos/${service.id}`"
+                        v-if="!service?.LearningPage"
+                    />
+
+                    <Button
+                        title="Registruotis"
+                        link="/mokymai"
+                        v-if="service?.LearningPage"
                     />
                 </div>
             </div>
@@ -42,14 +50,19 @@
 <script setup>
 import { fetchData } from "@/api";
 import { onMounted, ref } from "vue";
+import { useLoaderStore } from "@/stores/loaderStore";
 import Button from "./Button.vue";
+
 const services = ref([]);
+const loader = useLoaderStore();
 
 onMounted(async () => {
     const response = await fetchData("/services?populate=*");
 
-    console.log("servizz", response);
-
     services.value = response.data;
+
+    loader.isLoading = false;
+
+    window.dispatchEvent(new Event("resize"));
 });
 </script>

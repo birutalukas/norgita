@@ -1,7 +1,7 @@
 <template>
     <button
         @click="navigate"
-        class="bg-theme-yellow h-16 flex justify-center items-center gap-2 px-8 rounded-xl text-[1.5rem] leading-6 font-[700]"
+        class="bg-theme-yellow h-14 md:h-16 flex justify-center items-center gap-2 px-8 rounded-xl text-[1.25rem] md:text-[1.5rem] md:leading-6 font-[700]"
     >
         {{ title }} <img :src="arrow" alt="->" width="32" height="16" />
     </button>

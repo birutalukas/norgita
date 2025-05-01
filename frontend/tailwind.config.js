@@ -14,7 +14,7 @@ export default {
                 "theme-warm": "#EDECD8",
                 "theme-yellow": "#F6E17F",
                 "theme-blue-light": "#406389",
-                "theme-blude": "#2A4A6C",
+                "theme-blue": "#2A4A6C",
                 "theme-blue-dark": "#193553",
             },
         },

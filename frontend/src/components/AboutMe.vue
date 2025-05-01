@@ -1,15 +1,15 @@
 <template>
     <section class="section bg-theme-blue-light">
         <div class="container">
-            <div class="flex items-center">
-                <div class="flex-1">
-                    <img :src="props.data?.image?.url" alt="" />
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="flex-1 mb-10 md:mb-">
+                    <img :src="getImageUrl(props.data?.image)" alt="" />
                 </div>
                 <div class="flex-1">
-                    <h2 class="section-title text-white mb-8">
+                    <h2 class="section-title text-white">
                         <span>{{ props.data?.title }}</span>
                         <span
-                            class="block text-[2rem] leading-10 tracking-[0.07em] text-theme-yellow mt-8"
+                            class="block text-[2rem] leading-10 tracking-[0.07em] text-theme-yellow mt-4 md:mt-8"
                         >
                             {{ props.data?.heading }}
                         </span>
@@ -36,6 +36,13 @@ const props = defineProps({
         required: true,
     },
 });
+function getImageUrl(image) {
+    if (!image) return ""; // null or undefined
+    if (Array.isArray(image)) {
+        return image[0]?.url || "";
+    }
+    return image.url || "";
+}
 
 console.log("props", props);
 const parsedDescription = computed(() => {

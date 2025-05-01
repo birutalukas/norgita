@@ -1,6 +1,6 @@
 <template>
     <section
-        class="section h-[calc(100vh-8rem)] flex items-center justify-start overflow-hidden"
+        class="section h-[calc(100vh-8rem)] flex items-end md:items-center justify-start overflow-hidden"
         style="background-image: url('{{ data?.image?.url }}') ;"
     >
         <img
@@ -9,9 +9,9 @@
             class="min-h-full min-w-full object-cover absolute inset-0"
         />
         <div class="container relative z-10">
-            <div class="max-w-[35rem] flex flex-col items-start gap-8">
+            <div class="max-w-[35rem] flex flex-col items-start gap-4 md:gap-8">
                 <h1
-                    class="text-[3.5rem] leading-[4rem] tracking-[0.07em] font-[700] text-white"
+                    class="text-[3rem] leading-[3.5rem] tracking-[0.07em] font-[700] text-white"
                 >
                     {{ data.title }}
                 </h1>
