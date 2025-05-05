@@ -22,7 +22,7 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { fetchData } from "@/api";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { renderContent } from "@/helpers/render";
 import { useLanguageStore } from "@/stores/languageStore";
 import { useLoaderStore } from "@/stores/loaderStore";
@@ -36,30 +36,61 @@ const heroData = ref([]);
 const content = ref([]);
 const loader = useLoaderStore();
 
-const { currentLang } = useLanguageStore();
+const languageStore = useLanguageStore();
+
+async function loadContent(lang) {
+    try {
+        const response = await fetchData(`/services/?populate=*`);
+
+        const currentService = response.data.find(
+            (s) => String(s.id) === String(serviceId)
+        );
+
+        console.log("currentService", currentService);
+        // Fallback if no match
+        if (!currentService) {
+            console.error("Service not found for this ID.");
+            return;
+        }
+
+        // Find localized version for target language
+        const localized =
+            lang === currentService.locale
+                ? currentService
+                : currentService.localizations.find(
+                      (loc) => loc.locale === lang
+                  );
+
+        if (!localized) {
+            console.warn(`No localization found for lang: ${lang}`);
+            return;
+        }
+
+        service.value = localized;
+        heroData.value = {
+            image: localized?.value?.PageCover,
+            title: localized?.value?.Title,
+            description: localized?.value?.ShortDescription,
+            cta: false,
+        };
+
+        content.value = localized.Content;
+
+        loader.isLoading = false;
+        window.dispatchEvent(new Event("resize"));
+    } catch (e) {
+        console.error("Error loading service page:", e);
+    }
+}
 
 onMounted(async () => {
-    console.log("serviceId", serviceId);
-    const response = await fetchData(
-        `/services?locale=${currentLang}&populate=*`
-    );
-
-    service.value = response.data.find(
-        (s) => String(s.id) === String(serviceId)
-    );
-
-    console.log("service.value", service.value);
-    heroData.value = {
-        image: service.value.PageCover,
-        title: service.value.Title,
-        description: service.value.ShortDescription,
-        cta: false,
-    };
-
-    content.value = service.value.Content;
-
-    console.log(heroData);
-    loader.isLoading = false;
-    window.dispatchEvent(new Event("resize"));
+    loadContent(languageStore.currentLang);
 });
+
+watch(
+    () => languageStore.currentLang,
+    (newLang) => {
+        loadContent(newLang);
+    }
+);
 </script>
