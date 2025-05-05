@@ -24,6 +24,7 @@ import { useRoute } from "vue-router";
 import { fetchData } from "@/api";
 import { onMounted, ref } from "vue";
 import { renderContent } from "@/helpers/render";
+import { useLanguageStore } from "@/stores/languageStore";
 import { useLoaderStore } from "@/stores/loaderStore";
 import Hero from "@/components/Hero.vue";
 
@@ -35,9 +36,13 @@ const heroData = ref([]);
 const content = ref([]);
 const loader = useLoaderStore();
 
+const { currentLang } = useLanguageStore();
+
 onMounted(async () => {
     console.log("serviceId", serviceId);
-    const response = await fetchData("/services?populate=*");
+    const response = await fetchData(
+        "/services?locale=${currentLang}&populate=*"
+    );
 
     service.value = response.data.find(
         (s) => String(s.id) === String(serviceId)

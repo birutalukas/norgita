@@ -51,7 +51,7 @@
 import { fetchData } from "@/api";
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-
+import { useLanguageStore } from "@/stores/languageStore";
 import { useLoaderStore } from "@/stores/loaderStore";
 import { scrollToHash } from "@/scripts/smoothScroll";
 import Button from "./Button.vue";
@@ -60,8 +60,12 @@ const route = useRoute();
 const services = ref([]);
 const loader = useLoaderStore();
 
+const { currentLang } = useLanguageStore();
+
 onMounted(async () => {
-    const response = await fetchData("/services?populate=*");
+    const response = await fetchData(
+        "/services?locale=${currentLang}&populate=*"
+    );
 
     services.value = response.data;
 

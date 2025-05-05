@@ -37,16 +37,16 @@
                         </button>
                         <button
                             class="flex items-center gap-2"
-                            @click="setLanguage('no')"
+                            @click="setLanguage('nn-NO')"
                         >
                             <img :src="no" alt="Norsk" width="24" height="24" />
                             <span
                                 class="hidden md:block"
                                 :class="{
                                     'opacity-100':
-                                        languageStore.currentLang === 'no',
+                                        languageStore.currentLang === 'nn-NO',
                                     'opacity-50':
-                                        languageStore.currentLang !== 'no',
+                                        languageStore.currentLang !== 'nn-NO',
                                 }"
                                 >Norsk</span
                             >

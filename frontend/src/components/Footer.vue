@@ -90,7 +90,7 @@
 import { onMounted, ref } from "vue";
 import { fetchData } from "@/api";
 import router from "@/router";
-import { useLanguageStore } from "@/stores/languageStore"; // Import the store
+import { useLanguageStore } from "@/stores/languageStore";
 const { currentLang } = useLanguageStore();
 
 import Brand from "./Brand.vue";

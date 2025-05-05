@@ -90,6 +90,8 @@ import { scrollToHash } from "@/scripts/smoothScroll";
 import { useRoute } from "vue-router";
 import { useLoaderStore } from "@/stores/loaderStore";
 import { API_BASE_URL } from "@/api";
+import { useLanguageStore } from "@/stores/languageStore";
+const { currentLang } = useLanguageStore();
 import Hero from "@/components/Hero.vue";
 import Button from "@/components/Button.vue";
 
@@ -107,7 +109,9 @@ const loader = useLoaderStore();
 const route = useRoute();
 
 onMounted(async () => {
-    const response = await fetchData("/contact-page?populate=*");
+    const response = await fetchData(
+        "/contact-page?locale=${currentLang}&populate=*"
+    );
     contactData.value = {
         title: response.data.HeroTitle,
         description: response.data.HeroDescription,

@@ -17,7 +17,7 @@ const messages = {
         thankYou: "Ačiū!",
         contactSuccess: "Ačiū! Jūsų žinutė buvo sėkmingai išsiųsta.",
     },
-    no: {
+    "nn-NO": {
         headingServices: "Opplæring og tjenester",
         headingAbout: "Om oss",
         headingContact: "Kontakter",
