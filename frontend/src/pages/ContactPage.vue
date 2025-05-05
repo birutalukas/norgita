@@ -91,9 +91,10 @@ import { useRoute } from "vue-router";
 import { useLoaderStore } from "@/stores/loaderStore";
 import { API_BASE_URL } from "@/api";
 import { useLanguageStore } from "@/stores/languageStore";
-const { currentLang } = useLanguageStore();
 import Hero from "@/components/Hero.vue";
 import Button from "@/components/Button.vue";
+
+const languageStore = useLanguageStore();
 
 const contactData = ref([]);
 const form = ref({
@@ -108,23 +109,39 @@ const loader = useLoaderStore();
 
 const route = useRoute();
 
+async function loadContent(lang) {
+    try {
+        const response = await fetchData(
+            `/contact-page?locale=${languageStore.currentLang}&populate=*`
+        );
+        contactData.value = {
+            title: response.data.HeroTitle,
+            description: response.data.HeroDescription,
+            image: response.data.HeroImage,
+            cta: false,
+        };
+
+        loader.isLoading = false;
+
+        scrollToHash(route);
+
+        window.dispatchEvent(new Event("resize"));
+    } catch (e) {
+        console.error("Error loading services:", e);
+    }
+}
+
 onMounted(async () => {
-    const response = await fetchData(
-        "/contact-page?locale=${currentLang}&populate=*"
-    );
-    contactData.value = {
-        title: response.data.HeroTitle,
-        description: response.data.HeroDescription,
-        image: response.data.HeroImage,
-        cta: false,
-    };
-
-    loader.isLoading = false;
-
-    scrollToHash(route);
-
-    window.dispatchEvent(new Event("resize"));
+    loadContent(languageStore.currentLang);
 });
+
+watch(
+    () => languageStore.currentLang,
+    (newLang) => {
+        loadContent(newLang);
+    }
+);
+
 watch(
     () => route.hash,
     () => {

@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { fetchData } from "@/api";
 import { useLoaderStore } from "@/stores/loaderStore";
 import { useLanguageStore } from "@/stores/languageStore";
@@ -18,32 +18,48 @@ import Services from "@/components/Services.vue";
 const heroData = ref([]);
 const aboutData = ref([]);
 const loader = useLoaderStore();
+const languageStore = useLanguageStore();
 
-const { currentLang } = useLanguageStore();
+// const pageContent = ref(null);
 
-onMounted(async () => {
-    const response = await fetchData(
-        "/homepage?locale=${currentLang}&populate=*"
-    );
+async function loadContent(lang) {
+    try {
+        const response = await fetchData(`/homepage?locale=${lang}&populate=*`);
+        // pageContent.value = response.data;
 
-    console.log("response", response);
-    heroData.value = {
-        title: response.data.HeroTitle,
-        description: response.data.HeroDescription,
-        image: response.data.HeroImage,
-        cta: true,
-    };
-    aboutData.value = {
-        title: response.data.IntroTitle,
-        heading: response.data.IntroHeading,
-        description: response.data.IntroContent,
-        image: response.data.IntroImage,
-    };
+        heroData.value = {
+            title: response.data.HeroTitle,
+            description: response.data.HeroDescription,
+            image: response.data.HeroImage,
+            cta: true,
+        };
+        aboutData.value = {
+            title: response.data.IntroTitle,
+            heading: response.data.IntroHeading,
+            description: response.data.IntroContent,
+            image: response.data.IntroImage,
+        };
 
-    // await nextTick();
+        // await nextTick();
 
-    loader.isLoading = false;
+        loader.isLoading = false;
 
-    window.dispatchEvent(new Event("resize"));
+        window.dispatchEvent(new Event("resize"));
+    } catch (e) {
+        console.error("Error loading content:", e);
+    }
+}
+
+// Load initially
+onMounted(() => {
+    loadContent(languageStore.currentLang);
 });
+
+// Watch for language changes
+watch(
+    () => languageStore.currentLang,
+    (newLang) => {
+        loadContent(newLang);
+    }
+);
 </script>

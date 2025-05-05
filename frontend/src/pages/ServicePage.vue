@@ -41,7 +41,7 @@ const { currentLang } = useLanguageStore();
 onMounted(async () => {
     console.log("serviceId", serviceId);
     const response = await fetchData(
-        "/services?locale=${currentLang}&populate=*"
+        `/services?locale=${currentLang}&populate=*`
     );
 
     service.value = response.data.find(

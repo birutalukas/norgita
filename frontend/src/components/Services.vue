@@ -59,22 +59,35 @@ import Button from "./Button.vue";
 const route = useRoute();
 const services = ref([]);
 const loader = useLoaderStore();
+const languageStore = useLanguageStore();
 
-const { currentLang } = useLanguageStore();
+async function loadContent(lang) {
+    try {
+        const response = await fetchData(
+            `/services?locale=${languageStore.currentLang}&populate=*`
+        );
 
+        services.value = response.data;
+
+        loader.isLoading = false;
+
+        scrollToHash(route);
+
+        window.dispatchEvent(new Event("resize"));
+    } catch (e) {
+        console.error("Error loading services:", e);
+    }
+}
 onMounted(async () => {
-    const response = await fetchData(
-        "/services?locale=${currentLang}&populate=*"
-    );
-
-    services.value = response.data;
-
-    loader.isLoading = false;
-
-    scrollToHash(route);
-
-    window.dispatchEvent(new Event("resize"));
+    loadContent(languageStore.currentLang);
 });
+
+watch(
+    () => languageStore.currentLang,
+    (newLang) => {
+        loadContent(newLang);
+    }
+);
 
 watch(
     () => route.hash,

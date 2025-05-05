@@ -87,21 +87,38 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { fetchData } from "@/api";
 import router from "@/router";
 import { useLanguageStore } from "@/stores/languageStore";
-const { currentLang } = useLanguageStore();
+const languageStore = useLanguageStore();
 
 import Brand from "./Brand.vue";
 const services = ref([]);
-onMounted(async () => {
-    const response = await fetchData(
-        "/services?locale=${currentLang}&populate=*"
-    );
 
-    services.value = response.data;
+async function loadContent(lang) {
+    try {
+        const response = await fetchData(
+            `/services?locale=${languageStore.currentLang}&populate=*`
+        );
+
+        services.value = response.data;
+    } catch (e) {
+        console.error("Error loading Footer:", e);
+    }
+}
+// Load initially
+onMounted(() => {
+    loadContent(languageStore.currentLang);
 });
+
+// Watch for language changes
+watch(
+    () => languageStore.currentLang,
+    (newLang) => {
+        loadContent(newLang);
+    }
+);
 
 const currentYear = new Date().getFullYear();
 </script>
