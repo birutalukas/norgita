@@ -6,7 +6,13 @@ import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger);
 
 export const lenis = new Lenis({
+    smooth: true,
+    syncTouch: true,
+    gestureOrientation: "vertical",
+
     lerp: 0.1,
+    wrapper: window,
+    content: document.documentElement,
 });
 export const smoothScroll = () => {
     lenis.on("scroll", ScrollTrigger.update);

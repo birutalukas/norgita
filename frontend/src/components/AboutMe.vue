@@ -1,8 +1,8 @@
 <template>
     <section class="section bg-theme-blue-light" id="apie-mus">
         <div class="container">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="flex-1 mb-10 md:mb-">
+            <div class="flex flex-col items-center md:flex-row md:items-start">
+                <div class="flex-1 mb-10 md:mb-0 md:sticky md:top-24">
                     <img :src="getImageUrl(props.data?.image)" alt="" />
                 </div>
                 <div class="flex-1">

@@ -13,7 +13,7 @@
 
                 <div>
                     <h4 class="text-[1.25rem] leading-6 font-[700] mb-5">
-                        Paslaugos
+                        {{ $t("servicesTitle") }}
                     </h4>
                     <div class="flex flex-col items-start gap-3 text-left">
                         <button
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <h4 class="text-[1.25rem] leading-6 font-[700] mb-5">
-                        Informacija
+                        {{ $t("infoTitle") }}
                     </h4>
                     <div class="flex flex-col items-start gap-3">
                         <button
@@ -40,7 +40,7 @@
                             "
                             class="text-white text-base text-left"
                         >
-                            Mokymai ir paslaugos
+                            {{ $t("headingServices") }}
                         </button>
                         <button
                             @click="
@@ -48,20 +48,20 @@
                             "
                             class="text-white text-base text-left"
                         >
-                            Apie mus
+                            {{ $t("headingAbout") }}
                         </button>
 
                         <button
                             @click="router.push('/kontaktai')"
                             class="text-white text-base text-left"
                         >
-                            Kontaktai
+                            {{ $t("headingContact") }}
                         </button>
                     </div>
                 </div>
                 <div>
                     <h4 class="text-[1.25rem] leading-6 font-[700] mb-5">
-                        Susisiekite
+                        {{ $t("contactTitle") }}
                     </h4>
                     <div class="flex flex-col gap-3">
                         <a
@@ -89,13 +89,16 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { fetchData } from "@/api";
-
 import router from "@/router";
+import { useLanguageStore } from "@/stores/languageStore"; // Import the store
+const { currentLang } = useLanguageStore();
 
 import Brand from "./Brand.vue";
 const services = ref([]);
 onMounted(async () => {
-    const response = await fetchData("/services?populate=*");
+    const response = await fetchData(
+        "/services?locale=${currentLang}&populate=*"
+    );
 
     services.value = response.data;
 });

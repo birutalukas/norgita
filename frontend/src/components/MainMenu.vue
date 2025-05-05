@@ -3,17 +3,17 @@
         @click="router.push({ path: '/', hash: '#mokymai-ir-paslaugos' })"
         class="text-white text-nowrap"
     >
-        Mokymai ir paslaugos
+        {{ $t("headingServices") }}
     </button>
     <button
         @click="router.push({ path: '/', hash: '#apie-mus' })"
         class="text-white text-nowrap"
     >
-        Apie mus
+        {{ $t("headingAbout") }}
     </button>
 
     <button @click="router.push('/kontaktai')" class="text-white text-nowrap">
-        Kontaktai
+        {{ $t("headingContact") }}
     </button>
     <a href="https://facebook.com" target="_blank">
         <img :src="facebook" alt="Facebook" width="30" height="30" />

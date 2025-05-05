@@ -5,8 +5,8 @@
         <section class="section bg-warm" id="susisiekime">
             <div class="container">
                 <h2 class="section-title text-theme-blue md:text-center">
-                    <span v-if="!mailSent">Susisiekime</span>
-                    <span v-else>Ačiū!</span>
+                    <span v-if="!mailSent">{{ $t("contactMe") }}</span>
+                    <span v-else>{{ $t("thankYou") }}</span>
                 </h2>
 
                 <form
@@ -15,7 +15,9 @@
                     v-if="!mailSent"
                 >
                     <div class="w-full mb-8">
-                        <label class="form-label" for="name">Vardas</label>
+                        <label class="form-label" for="name">{{
+                            $t("name")
+                        }}</label>
                         <input
                             class="form-input"
                             type="text"
@@ -26,7 +28,9 @@
                         />
                     </div>
                     <div class="w-full mb-8">
-                        <label class="form-label" for="">El. paštas</label>
+                        <label class="form-label" for="">{{
+                            $t("email")
+                        }}</label>
                         <input
                             class="form-input"
                             type="email"
@@ -37,7 +41,9 @@
                         />
                     </div>
                     <div class="w-full mb-8">
-                        <label class="form-label" for="tel">Telefono nr.</label>
+                        <label class="form-label" for="tel">{{
+                            $t("telnum")
+                        }}</label>
                         <input
                             class="form-input"
                             type="tel"
@@ -47,7 +53,9 @@
                         />
                     </div>
                     <div class="w-full mb-8">
-                        <label class="form-label" for="message">Žinutė</label>
+                        <label class="form-label" for="message">{{
+                            $t("message")
+                        }}</label>
                         <textarea
                             class="form-input !h-52 !p-4 resize-none"
                             name="message"
@@ -59,13 +67,16 @@
                     <div
                         class="w-full absolute left-0 bottom-0 translate-y-[.125rem]"
                     >
-                        <Button title="Siųsti" type="submit" class="w-full"
-                            >Siųsti</Button
+                        <Button
+                            :title="$t('send')"
+                            type="submit"
+                            class="w-full"
+                            >{{ $t("send") }}</Button
                         >
                     </div>
                 </form>
                 <div v-else class="text-center mt-16">
-                    <p>Thank you! Your message has been sent successfully.</p>
+                    <p>{{ $t("contactSuccess") }}</p>
                 </div>
             </div>
         </section>

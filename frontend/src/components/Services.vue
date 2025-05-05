@@ -2,7 +2,7 @@
     <section class="section bg-warm" id="mokymai-ir-paslaugos">
         <div class="container">
             <h2 class="section-title text-theme-blue md:text-center">
-                Mokymai ir paslaugos
+                {{ $t("headingServices") }}
             </h2>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8 md:mt-16"

@@ -1,6 +1,6 @@
-// stores/languageStore.js
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { i18n } from "@/i18n";
 
 export const useLanguageStore = defineStore("language", () => {
     // Create a reactive reference for the current language
@@ -12,6 +12,7 @@ export const useLanguageStore = defineStore("language", () => {
 
         console.log("Language changed to:", lang);
         setTimeout(() => {
+            i18n.global.locale.value = lang; // Update global instance
             localStorage.setItem("language", lang); // Store language in localStorage
         }, 1000);
     }
