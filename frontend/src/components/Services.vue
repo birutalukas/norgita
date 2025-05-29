@@ -32,7 +32,7 @@
 
                     <Button
                         title="Registruotis"
-                        :link="`/paslaugos/${service.id}`"
+                        :link="`/paslaugos/${service.Slug}`"
                         v-if="!service?.LearningPage"
                     />
 

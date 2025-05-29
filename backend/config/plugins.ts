@@ -11,7 +11,7 @@ export default ({ env }) => ({
                 upload: {},
                 delete: {},
             },
-            baseUrl: `https://res.cloudinary.com/${env("CLOUDINARY_NAME")}/`,
+            baseUrl: `https://res.cloudinary.com/${env("CLOUDINARY_KEY")}/image/upload/`,
         },
     },
     email: {

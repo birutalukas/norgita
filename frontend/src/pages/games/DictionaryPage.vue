@@ -81,7 +81,7 @@ import { fetchData } from "@/api";
 register();
 
 const route = useRoute();
-const pageID = route.params.id;
+const pageID = route.params.slug;
 
 const swiperEl = ref(null);
 
@@ -140,11 +140,12 @@ function toggleStatus(id) {
 selectedLang.value = languageStore.currentLang;
 
 onMounted(async () => {
+    console.log("pageID", pageID);
     try {
         const response = await fetchData("/dictionaries/?populate=*");
 
         const currentDictionary = response.data.find(
-            (d) => String(d.id) === String(pageID)
+            (d) => String(d.Slug) === String(pageID)
         );
 
         // Fallback if no match

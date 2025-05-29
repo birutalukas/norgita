@@ -32,7 +32,7 @@
 
                     <Button
                         :title="dictionary?.CardInfo?.ButtonTitle"
-                        :link="`/mokymai/${dictionary.slug}`"
+                        :link="`/mokymai/${dictionary.Slug}`"
                     />
                 </div>
             </div>
