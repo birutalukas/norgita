@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_dictionary_dictionaries",
+  "info": {
+    "displayName": "Dictionary",
+    "icon": "discuss"
+  },
+  "options": {},
+  "attributes": {
+    "Word": {
+      "type": "string"
+    },
+    "Translation": {
+      "type": "string"
+    },
+    "WordAudio": {
+      "allowedTypes": [
+        "files",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "TranslationAudio": {
+      "allowedTypes": [
+        "files",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

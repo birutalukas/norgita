@@ -478,13 +478,13 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFlashcardFlashcard extends Struct.CollectionTypeSchema {
-  collectionName: 'flashcards';
+export interface ApiDictionaryDictionary extends Struct.CollectionTypeSchema {
+  collectionName: 'dictionary';
   info: {
     description: '';
-    displayName: 'Flashcard';
-    pluralName: 'flashcards';
-    singularName: 'flashcard';
+    displayName: 'Dictionary';
+    pluralName: 'dictionaries';
+    singularName: 'dictionary';
   };
   options: {
     draftAndPublish: true;
@@ -498,43 +498,17 @@ export interface ApiFlashcardFlashcard extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Dictionary: Schema.Attribute.Component<'dictionary.dictionary', true>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::flashcard.flashcard'
+      'api::dictionary.dictionary'
     >;
+    PageTitle: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    Translation: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    TranslationAudio: Schema.Attribute.Media<'files' | 'audios'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Word: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    WordAudio: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
   };
 }
 
@@ -542,7 +516,7 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   collectionName: 'homepages';
   info: {
     description: '';
-    displayName: 'Homepage';
+    displayName: 'HomePage';
     pluralName: 'homepages';
     singularName: 'homepage';
   };
@@ -1198,7 +1172,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::contact.contact': ApiContactContact;
-      'api::flashcard.flashcard': ApiFlashcardFlashcard;
+      'api::dictionary.dictionary': ApiDictionaryDictionary;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;

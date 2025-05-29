@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { useLanguageStore } from "@/stores/languageStore";
 import { fetchData } from "@/api";
 import { ref, watch, computed } from "vue";
-export const useWordsStore = defineStore("flashcards", () => {
+export const useWordsStore = defineStore("dictionaries", () => {
     const languageStore = useLanguageStore();
 
     const selectedLang = ref(languageStore.currentLang.value);
@@ -18,7 +18,7 @@ export const useWordsStore = defineStore("flashcards", () => {
     // Fetch and prepare both LT and NO words
     async function fetchWords() {
         try {
-            const data = await fetchData("/flashcards");
+            const data = await fetchData("/dictionaries");
             const wordList = data.data;
 
             words.value["lt"] = wordList.map((word) => ({
@@ -35,7 +35,7 @@ export const useWordsStore = defineStore("flashcards", () => {
                 status: "learning",
             }));
         } catch (error) {
-            console.error("Failed to fetch flashcards:", error);
+            console.error("Failed to fetch dictionaries:", error);
         }
     }
 
