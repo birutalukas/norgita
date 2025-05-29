@@ -69,22 +69,21 @@
 </template>
 
 <script setup>
+import { useRoute } from "vue-router";
 import { onMounted, ref, reactive, nextTick, computed, watch } from "vue";
-import { useWordsStore } from "@/stores/words";
+import { useLanguageStore } from "@/stores/languageStore";
 import { useLoaderStore } from "@/stores/loaderStore";
 import "swiper/css";
 import { register } from "swiper/element/bundle";
 import { Howl } from "howler";
-
+import { fetchData } from "@/api";
 // Register Swiper custom elements
 register();
 
+const route = useRoute();
+const pageID = route.params.id;
+
 const swiperEl = ref(null);
-
-const wordsStore = useWordsStore();
-
-// Access the filtered words for the selected language
-const filteredWords = computed(() => wordsStore.filteredWords);
 
 const openedTranslationId = ref(null);
 const expandedWordId = ref(null);
@@ -109,19 +108,67 @@ const updateTranslationHeight = (id) => {
     }
 };
 
-// Toggle the status of the word when clicked
-const toggleStatus = (id) => {
-    wordsStore.toggleStatus(id);
-};
-
 const playAudio = (audioFile) => {
     const sound = new Howl({ src: [`/audio/${audioFile}`] });
     sound.play();
 };
 const loader = useLoaderStore();
 
+const languageStore = useLanguageStore();
+
+const selectedLang = ref(languageStore.currentLang.value);
+const words = ref({
+    lt: [],
+    "nn-NO": [],
+});
+
+const filteredWords = computed(() => {
+    return words.value[selectedLang.value];
+});
+
+// Fetch and prepare both LT and NO words
+
+// Toggle status (e.g., known/learning)
+function toggleStatus(id) {
+    const word = words.value[selectedLang.value].find((w) => w.id === id);
+    if (word) {
+        word.status = word.status === "known" ? "learning" : "known";
+    }
+}
+
+// Sync initially
+selectedLang.value = languageStore.currentLang;
+
 onMounted(async () => {
-    await wordsStore.fetchWords();
+    try {
+        const response = await fetchData("/dictionaries/?populate=*");
+
+        const currentDictionary = response.data.find(
+            (d) => String(d.id) === String(pageID)
+        );
+
+        // Fallback if no match
+        if (!currentDictionary) {
+            console.error("Service not found for this ID.");
+            return;
+        }
+
+        words.value["lt"] = currentDictionary.Dictionary.map((word) => ({
+            id: word.id,
+            main: word.Word,
+            translation: word.Translation,
+            status: "learning",
+        }));
+
+        words.value["nn-NO"] = currentDictionary.Dictionary.map((word) => ({
+            id: word.id,
+            main: word.Translation,
+            translation: word.Word,
+            status: "learning",
+        }));
+    } catch (error) {
+        console.error("Failed to fetch dictionaries:", error);
+    }
 
     const swiperParams = {
         slidesPerView: 1,
@@ -145,7 +192,13 @@ onMounted(async () => {
 
     window.dispatchEvent(new Event("resize"));
 });
-
+// React to language change
+watch(
+    () => languageStore.currentLang,
+    (newLang) => {
+        selectedLang.value = newLang;
+    }
+);
 watch(openedTranslationId, (newVal, oldVal) => {
     if (oldVal !== null && newVal !== oldVal) {
         collapseHeight(oldVal);

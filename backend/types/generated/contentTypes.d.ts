@@ -495,6 +495,7 @@ export interface ApiDictionaryDictionary extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    CardInfo: Schema.Attribute.Component<'cards.card-info', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

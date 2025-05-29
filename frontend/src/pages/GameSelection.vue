@@ -30,7 +30,7 @@
                     </div>
 
                     <Button
-                        title="Registruotis"
+                        :title="dictionary?.ButtonTitle"
                         :link="`/mokymai/${dictionary.id}`"
                     />
                 </div>
@@ -41,14 +41,11 @@
 
 <script setup>
 import { ref, watch, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
 import { useLanguageStore } from "@/stores/languageStore";
 import { useLoaderStore } from "@/stores/loaderStore";
 import { fetchData } from "@/api";
+import Button from "@/components/Button.vue";
 
-const router = useRouter();
-
-const route = useRoute();
 const dictionaries = ref([]);
 const loader = useLoaderStore();
 const languageStore = useLanguageStore();
@@ -61,6 +58,7 @@ async function loadContent(lang) {
 
         dictionaries.value = response.data;
 
+        console.log(dictionaries.value);
         loader.isLoading = false;
 
         window.dispatchEvent(new Event("resize"));

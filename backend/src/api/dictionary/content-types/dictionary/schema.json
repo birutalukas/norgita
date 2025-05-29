@@ -25,6 +25,11 @@
       "type": "component",
       "repeatable": true,
       "component": "dictionary.dictionary"
+    },
+    "CardInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "cards.card-info"
     }
   }
 }

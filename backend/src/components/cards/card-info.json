@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_cards_card_infos",
+  "info": {
+    "displayName": "CardInfo",
+    "icon": "crop",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "CardCover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "ShortDescription": {
+      "type": "text"
+    },
+    "ButtonTitle": {
+      "type": "string"
+    }
+  }
+}
