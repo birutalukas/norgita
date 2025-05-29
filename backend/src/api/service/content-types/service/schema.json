@@ -76,6 +76,11 @@
           "localized": true
         }
       }
+    },
+    "CardInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "cards.card-info"
     }
   }
 }

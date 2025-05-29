@@ -17,7 +17,7 @@
                     </h4>
                     <div class="flex flex-col items-start gap-3 text-left">
                         <button
-                            @click="router.push(`/paslaugos/${service.id}`)"
+                            @click="router.push(`/paslaugos/${service.slug}`)"
                             class="text-white text-base text-left font-[400]"
                             v-for="service in services"
                             :key="service.id"

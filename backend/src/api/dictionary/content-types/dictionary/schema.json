@@ -30,6 +30,11 @@
       "type": "component",
       "repeatable": false,
       "component": "cards.card-info"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "PageTitle",
+      "required": true
     }
   }
 }

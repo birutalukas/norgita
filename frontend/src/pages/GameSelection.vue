@@ -13,25 +13,26 @@
                 >
                     <div class="mb-8">
                         <img
-                            :src="dictionary.CardCover?.url"
+                            v-if="dictionary?.CardInfo?.CardCover?.url"
+                            :src="dictionary?.CardInfo?.CardCover?.url"
                             class="mb-8 w-full h-[15rem] object-cover"
                         />
 
                         <h3
                             class="text-theme-warm text-[1.5rem] leading-8 tracking-[0.07em] font-[700] mb-3"
                         >
-                            {{ dictionary?.Title }}
+                            {{ dictionary?.CardInfo?.Title }}
                         </h3>
                         <p
                             class="text-white text-[1.125rem] leading-6 tracking-[-0.025rem] font-[400]"
                         >
-                            {{ dictionary?.ShortDescription }}
+                            {{ dictionary?.CardInfo?.ShortDescription }}
                         </p>
                     </div>
 
                     <Button
-                        :title="dictionary?.ButtonTitle"
-                        :link="`/mokymai/${dictionary.id}`"
+                        :title="dictionary?.CardInfo?.ButtonTitle"
+                        :link="`/mokymai/${dictionary.slug}`"
                     />
                 </div>
             </div>

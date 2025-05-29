@@ -11,11 +11,12 @@ export default ({ env }) => ({
                 upload: {},
                 delete: {},
             },
+            baseUrl: `https://res.cloudinary.com/${env("CLOUDINARY_NAME")}/`,
         },
     },
     email: {
         config: {
-            provider: "nodemailer", // We will use Nodemailer as the email provider
+            provider: "nodemailer", // We will use Nodemailer as the email providers
             providerOptions: {
                 host: process.env.SMTP_HOST, // SMTP server host
                 port: parseInt(process.env.SMTP_PORT), // SMTP port (587 for TLS)

@@ -507,6 +507,7 @@ export interface ApiDictionaryDictionary extends Struct.CollectionTypeSchema {
     >;
     PageTitle: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    Slug: Schema.Attribute.UID<'PageTitle'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -615,6 +616,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    CardInfo: Schema.Attribute.Component<'cards.card-info', false>;
     Content: Schema.Attribute.Blocks &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

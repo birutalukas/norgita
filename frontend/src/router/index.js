@@ -8,8 +8,8 @@ import ContactPage from "../pages/ContactPage.vue";
 const routes = [
     { path: "/", component: Home },
     { path: "/mokymai", component: GameSelection },
-    { path: "/mokymai/:id", component: DictionaryPage },
-    { path: "/paslaugos/:id", component: ServicePage }, // <--- dynamic service page
+    { path: "/mokymai/:slug", component: DictionaryPage },
+    { path: "/paslaugos/:slug", component: ServicePage }, // <--- dynamic service page
     { path: "/kontaktai", component: ContactPage },
 ];
 

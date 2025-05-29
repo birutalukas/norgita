@@ -29,7 +29,7 @@ import { useLoaderStore } from "@/stores/loaderStore";
 import Hero from "@/components/Hero.vue";
 
 const route = useRoute();
-const pageID = route.params.id;
+const serviceId = route.params.slug;
 
 const service = ref([]);
 const heroData = ref([]);
@@ -43,7 +43,7 @@ async function loadContent(lang) {
         const response = await fetchData(`/services/?populate=*`);
 
         const currentService = response.data.find(
-            (s) => String(s.id) === String(pageID)
+            (s) => String(s.slug) === String(serviceId)
         );
 
         console.log("currentService", currentService);
