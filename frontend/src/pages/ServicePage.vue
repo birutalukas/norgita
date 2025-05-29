@@ -66,14 +66,16 @@ async function loadContent(lang) {
             return;
         }
 
+        console.log("localized", localized);
         service.value = localized;
         heroData.value = {
-            image: localized?.value?.PageCover,
-            title: localized?.value?.Title,
-            description: localized?.value?.ShortDescription,
+            image: localized?.PageCover,
+            title: localized?.Title,
+            description: localized?.ShortDescription,
             cta: false,
         };
 
+        console.log(heroData.value);
         content.value = localized.Content;
 
         loader.isLoading = false;
