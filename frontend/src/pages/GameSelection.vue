@@ -13,9 +13,9 @@
                 >
                     <div class="mb-8">
                         <img
-                            v-if="dictionary?.CardInfo?.CardCover?.url"
-                            :src="dictionary?.CardInfo?.CardCover?.url"
-                            class="mb-8 w-full h-[15rem] object-cover"
+                            v-if="dictionary?.PageCover?.formats?.medium?.url"
+                            :src="dictionary?.PageCover?.formats?.medium?.url"
+                            class="mb-8 w-full aspect-video object-cover"
                         />
 
                         <h3

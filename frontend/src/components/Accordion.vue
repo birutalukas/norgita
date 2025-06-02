@@ -6,7 +6,7 @@
             class="border-b border-theme-blue"
         >
             <button
-                class="!text-[1.5rem] !font-semibold w-full py-6 flex items-center justify-between"
+                class="text-theme-blue text-[1.5rem] !ont-semibold w-full py-6 flex items-center justify-between"
                 @click="toggle(index)"
                 :aria-expanded="isOpen(index)"
             >

@@ -15,7 +15,10 @@
     <button @click="router.push('/kontaktai')" class="text-white text-nowrap">
         {{ $t("headingContact") }}
     </button>
-    <a href="https://facebook.com" target="_blank">
+    <a
+        href="https://www.facebook.com/profile.php?id=100091910817924"
+        target="_blank"
+    >
         <img :src="facebook" alt="Facebook" width="30" height="30" />
     </a>
     <a

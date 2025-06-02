@@ -14,6 +14,7 @@
                 >
                     <div class="mb-8">
                         <img
+                            v-if="service.PageCover?.formats?.medium?.url"
                             :src="service.PageCover?.formats?.medium?.url"
                             class="mb-8 w-full aspect-video object-cover"
                         />

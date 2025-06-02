@@ -15,12 +15,26 @@
             </div>
         </section>
 
-        <section class="section" v-if="faqItems.length">
+        <section class="section">
             <div class="container lg:max-w-[48rem]">
                 <div class="block w-full lg:max-w-[48rem] mx-auto">
-                    <h2
-                        class="text-[3rem] leading-[3.5rem] tracking-[0.07em] font-bold mb-8"
-                    >
+                    <h2 class="section-title text-theme-blue lg:text-center">
+                        {{ $t("registrationTitle") }}
+                    </h2>
+                    <ContactForm :title="heroData?.title" />
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="section border-t border-theme-blue"
+            v-if="faqItems.length"
+        >
+            <div class="container lg:max-w-[48rem]">
+                <div
+                    class="block w-full lg:max-w-[48rem] lg:text-center mx-auto"
+                >
+                    <h2 class="text-theme-blue section-title mb-8">
                         {{ $t("faqTitle") }}
                     </h2>
 
@@ -40,6 +54,7 @@ import { useLanguageStore } from "@/stores/languageStore";
 import { useLoaderStore } from "@/stores/loaderStore";
 import Hero from "@/components/Hero.vue";
 import Accordion from "@/components/Accordion.vue";
+import ContactForm from "@/components/ContactForm.vue";
 
 const route = useRoute();
 const pageID = route.params.slug;

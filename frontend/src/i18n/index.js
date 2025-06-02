@@ -9,6 +9,8 @@ const messages = {
         infoTitle: "Informacija",
         contactTitle: "Susisiekite",
         contactMe: "Susisiekime",
+        registrationTitle: "Registracija",
+
         name: "Vardas",
         email: "El. paštas",
         telnum: "Telefono nr.",
@@ -26,6 +28,7 @@ const messages = {
         infoTitle: "Informasjon",
         contactTitle: "Kontakt oss",
         contactMe: "Kontakt",
+        registrationTitle: "Registrering",
         name: "Navn",
         email: "E-post",
         telnum: "Telefonnummer",
