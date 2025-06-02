@@ -1,6 +1,10 @@
 <template>
     <div class="container">
         <section class="section">
+            <h1 class="section-title text-theme-blue text-center">
+                {{ pageTitle }}
+            </h1>
+
             <swiper-container ref="swiperEl" style="overflow: visible">
                 <swiper-slide
                     v-for="word in filteredWords"
@@ -84,7 +88,7 @@ const route = useRoute();
 const pageID = route.params.slug;
 
 const swiperEl = ref(null);
-
+const pageTitle = ref(null);
 const openedTranslationId = ref(null);
 const expandedWordId = ref(null);
 const translationRefs = ref({});
@@ -154,6 +158,7 @@ onMounted(async () => {
             return;
         }
 
+        pageTitle.value = currentDictionary?.CardInfo?.Title;
         words.value["lt"] = currentDictionary.Dictionary.map((word) => ({
             id: word.id,
             main: word.Word,

@@ -505,6 +505,7 @@ export interface ApiDictionaryDictionary extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::dictionary.dictionary'
     >;
+    PageCover: Schema.Attribute.Media<'images' | 'files'>;
     PageTitle: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'PageTitle'> & Schema.Attribute.Required;

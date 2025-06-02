@@ -7,14 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "CardCover": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "Title": {
       "type": "string",
       "required": false

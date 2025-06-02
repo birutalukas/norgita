@@ -14,12 +14,12 @@
                 >
                     <div class="mb-8">
                         <img
-                            :src="service.CardCover?.url"
+                            :src="service.PageCover?.formats?.medium?.url"
                             class="mb-8 w-full aspect-video object-cover"
                         />
 
                         <h3
-                            class="text-theme-warm text-[1.5rem] leading-8 tracking-[0.07em] font-[700] mb-3"
+                            class="text-theme-warm text-[1.5rem] leading-8 tracking-[0.07em] font-bold mb-3"
                         >
                             {{ service?.CardInfo?.Title }}
                         </h3>
@@ -31,7 +31,7 @@
                     </div>
 
                     <Button
-                        title="Registruotis"
+                        :title="service?.CardInfo?.ButtonTitle"
                         :link="`/paslaugos/${service.Slug}`"
                         v-if="!service?.LearningPage"
                     />

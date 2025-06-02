@@ -1,18 +1,30 @@
 <template>
     <div>
-        <Hero :data="heroData" />
+        <Hero :data="heroData" center />
         <section class="section bg-theme-warm">
-            <div class="container max-w-[48rem]">
-                <div class="block w-full max-w-[48rem] mx-auto">
-                    <h2
-                        class="section-title md:text-center mb-8 text-theme-blue-light"
+            <div class="container lg:max-w-[48rem]">
+                <div class="block w-full lg:max-w-[48rem] mx-auto">
+                    <!-- <h2
+                        class="section-title lg:text-center mb-8 text-theme-blue-light"
                     >
                         {{ service.Title }}
-                    </h2>
-
-                    {{ service.ShortDescription }}
+                    </h2> -->
 
                     <div v-html="renderContent(content)"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" v-if="faqItems.length">
+            <div class="container lg:max-w-[48rem]">
+                <div class="block w-full lg:max-w-[48rem] mx-auto">
+                    <h2
+                        class="text-[3rem] leading-[3.5rem] tracking-[0.07em] font-bold mb-8"
+                    >
+                        {{ $t("faqTitle") }}
+                    </h2>
+
+                    <Accordion :items="faqItems" :multiple="false" />
                 </div>
             </div>
         </section>
@@ -27,6 +39,7 @@ import { renderContent } from "@/helpers/render";
 import { useLanguageStore } from "@/stores/languageStore";
 import { useLoaderStore } from "@/stores/loaderStore";
 import Hero from "@/components/Hero.vue";
+import Accordion from "@/components/Accordion.vue";
 
 const route = useRoute();
 const pageID = route.params.slug;
@@ -34,6 +47,7 @@ const pageID = route.params.slug;
 const service = ref([]);
 const heroData = ref([]);
 const content = ref([]);
+const faqItems = ref([]);
 const loader = useLoaderStore();
 
 const languageStore = useLanguageStore();
@@ -71,12 +85,13 @@ async function loadContent(lang) {
         heroData.value = {
             image: localized?.PageCover,
             title: localized?.Title,
-            description: localized?.ShortDescription,
+            description: localized?.CardInfo?.ShortDescription,
             cta: false,
         };
 
-        console.log(heroData.value);
         content.value = localized.Content;
+
+        faqItems.value = localized?.Accordion;
 
         loader.isLoading = false;
         window.dispatchEvent(new Event("resize"));

@@ -16,6 +16,7 @@ const messages = {
         send: "Siųsti",
         thankYou: "Ačiū!",
         contactSuccess: "Ačiū! Jūsų žinutė buvo sėkmingai išsiųsta.",
+        faqTitle: "Dažniausiai užduodami klausimai",
     },
     "nn-NO": {
         headingServices: "Opplæring og tjenester",
@@ -32,6 +33,7 @@ const messages = {
         send: "Sende",
         thankYou: "Takk skal du ha!",
         contactSuccess: "Takk skal du ha! Meldingen din er sendt.",
+        faqTitle: "Ofte stilte spørsmål",
     },
 };
 

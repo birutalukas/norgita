@@ -35,6 +35,14 @@
       "type": "uid",
       "targetField": "PageTitle",
       "required": true
+    },
+    "PageCover": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

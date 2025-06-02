@@ -12,7 +12,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-[1.25rem] leading-6 font-[700] mb-5">
+                    <h4 class="text-[1.25rem] leading-6 font-bold mb-5">
                         {{ $t("servicesTitle") }}
                     </h4>
                     <div class="flex flex-col items-start gap-3 text-left">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-[1.25rem] leading-6 font-[700] mb-5">
+                    <h4 class="text-[1.25rem] leading-6 font-bold mb-5">
                         {{ $t("infoTitle") }}
                     </h4>
                     <div class="flex flex-col items-start gap-3">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-[1.25rem] leading-6 font-[700] mb-5">
+                    <h4 class="text-[1.25rem] leading-6 font-bold mb-5">
                         {{ $t("contactTitle") }}
                     </h4>
                     <div class="flex flex-col gap-3">
@@ -99,7 +99,7 @@ const services = ref([]);
 async function loadContent(lang) {
     try {
         const response = await fetchData(
-            `/services?locale=${languageStore.currentLang}&populate=*`
+            `/services?locale=${languageStore.currentLang}&populate=*&sort=SortOrder:asc`
         );
 
         services.value = response.data;
