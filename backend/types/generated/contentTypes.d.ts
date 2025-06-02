@@ -609,6 +609,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    Accordion: Schema.Attribute.Component<'content.accordion', true>;
     CardCover: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -653,6 +654,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
         };
       }>;
     Slug: Schema.Attribute.UID<'Title'> & Schema.Attribute.Required;
+    SortOrder: Schema.Attribute.Integer;
     Title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

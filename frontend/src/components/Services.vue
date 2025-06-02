@@ -1,5 +1,5 @@
 <template>
-    <section class="section bg-warm" id="mokymai-ir-paslaugos">
+    <section class="section bg-theme-warm" id="mokymai-ir-paslaugos">
         <div class="container">
             <h2 class="section-title text-theme-blue md:text-center">
                 {{ $t("headingServices") }}
@@ -64,7 +64,7 @@ const languageStore = useLanguageStore();
 async function loadContent(lang) {
     try {
         const response = await fetchData(
-            `/services?locale=${languageStore.currentLang}&populate=*`
+            `/services?locale=${languageStore.currentLang}&populate=*&sort=SortOrder:asc`
         );
 
         services.value = response.data;

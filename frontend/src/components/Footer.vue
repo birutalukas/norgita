@@ -65,14 +65,14 @@
                     </h4>
                     <div class="flex flex-col gap-3">
                         <a
-                            href="tel:+370 600 00000"
+                            href="tel:+4799890818"
                             class="text-white text-base text-left font-[400] underline"
-                            >+370 600 00000</a
+                            >+4799890818</a
                         >
                         <a
-                            href="mailto:info@norgita.lt"
+                            href="mailto:info@norgita.no"
                             class="text-white text-base text-left font-[400] underline"
-                            >info@norgita.lt</a
+                            >info@norgita.no</a
                         >
                     </div>
                 </div>

@@ -25,7 +25,7 @@
                 <div v-if="data.cta">
                     <Button
                         :link="{ path: '/kontaktai', hash: '#susisiekime' }"
-                        title="Registruotis"
+                        title="Susisiekime"
                     />
                 </div>
             </div>

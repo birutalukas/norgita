@@ -15,6 +15,18 @@ export interface CardsCardInfo extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentAccordion extends Struct.ComponentSchema {
+  collectionName: 'components_content_accordions';
+  info: {
+    displayName: 'Accordion';
+    icon: 'bulletList';
+  };
+  attributes: {
+    Content: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface DictionaryDictionary extends Struct.ComponentSchema {
   collectionName: 'components_dictionary_dictionaries';
   info: {
@@ -33,6 +45,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'cards.card-info': CardsCardInfo;
+      'content.accordion': ContentAccordion;
       'dictionary.dictionary': DictionaryDictionary;
     }
   }
