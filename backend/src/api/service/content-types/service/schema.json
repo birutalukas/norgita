@@ -16,36 +16,6 @@
     }
   },
   "attributes": {
-    "CardCover": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "ShortDescription": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "Title": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "PageCover": {
       "type": "media",
       "multiple": false,
@@ -84,7 +54,6 @@
     },
     "Slug": {
       "type": "uid",
-      "targetField": "Title",
       "required": true
     },
     "SortOrder": {
@@ -95,6 +64,9 @@
       "type": "component",
       "repeatable": true,
       "component": "content.accordion"
+    },
+    "Title": {
+      "type": "string"
     }
   }
 }

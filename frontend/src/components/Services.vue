@@ -5,7 +5,7 @@
                 {{ $t("headingServices") }}
             </h2>
             <div
-                class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8 md:mt-16"
+                class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-8 md:mt-16"
             >
                 <div
                     v-for="service in services"
@@ -15,18 +15,18 @@
                     <div class="mb-8">
                         <img
                             :src="service.CardCover?.url"
-                            class="mb-8 w-full h-[15rem] object-cover"
+                            class="mb-8 w-full aspect-video object-cover"
                         />
 
                         <h3
                             class="text-theme-warm text-[1.5rem] leading-8 tracking-[0.07em] font-[700] mb-3"
                         >
-                            {{ service?.Title }}
+                            {{ service?.CardInfo?.Title }}
                         </h3>
                         <p
                             class="text-white text-[1.125rem] leading-6 tracking-[-0.025rem] font-[400]"
                         >
-                            {{ service?.ShortDescription }}
+                            {{ service?.CardInfo?.ShortDescription }}
                         </p>
                     </div>
 
@@ -37,7 +37,7 @@
                     />
 
                     <Button
-                        title="Registruotis"
+                        :title="service?.CardInfo?.ButtonTitle"
                         link="/mokymai"
                         v-if="service?.LearningPage"
                     />
@@ -69,6 +69,7 @@ async function loadContent(lang) {
 
         services.value = response.data;
 
+        console.log("services, ", services.value);
         loader.isLoading = false;
 
         scrollToHash(route);

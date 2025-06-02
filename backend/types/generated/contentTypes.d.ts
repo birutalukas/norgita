@@ -610,13 +610,6 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
   };
   attributes: {
     Accordion: Schema.Attribute.Component<'content.accordion', true>;
-    CardCover: Schema.Attribute.Media<'images' | 'files'> &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     CardInfo: Schema.Attribute.Component<'cards.card-info', false>;
     Content: Schema.Attribute.Blocks &
       Schema.Attribute.SetPluginOptions<{
@@ -647,20 +640,9 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
-    ShortDescription: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    Slug: Schema.Attribute.UID<'Title'> & Schema.Attribute.Required;
+    Slug: Schema.Attribute.UID & Schema.Attribute.Required;
     SortOrder: Schema.Attribute.Integer;
-    Title: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

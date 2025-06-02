@@ -9,9 +9,9 @@ export interface CardsCardInfo extends Struct.ComponentSchema {
   };
   attributes: {
     ButtonTitle: Schema.Attribute.String;
-    CardCover: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    CardCover: Schema.Attribute.Media<'images'>;
     ShortDescription: Schema.Attribute.Text;
-    Title: Schema.Attribute.String & Schema.Attribute.Required;
+    Title: Schema.Attribute.String;
   };
 }
 

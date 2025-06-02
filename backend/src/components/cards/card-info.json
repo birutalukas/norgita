@@ -10,14 +10,14 @@
     "CardCover": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
     },
     "Title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "ShortDescription": {
       "type": "text"
