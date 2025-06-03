@@ -19,6 +19,16 @@ const messages = {
         thankYou: "Ačiū!",
         contactSuccess: "Ačiū! Jūsų žinutė buvo sėkmingai išsiųsta.",
         faqTitle: "Dažniausiai užduodami klausimai",
+
+        scheduleTitle: "Pamokų tvarkaraštis",
+        scheduleLevel: "Lygis",
+        scheduleDate: "Laikotarpis",
+        scheduleTime: "Pamokų laikas",
+        scheduleDays: "Pamokų dienos",
+        scheduleDuration: "Trukmė",
+        schedulePrice: "Kaina",
+
+        showMore: "Rodyti daugiau",
     },
     "nn-NO": {
         headingServices: "Opplæring og tjenester",
@@ -37,6 +47,16 @@ const messages = {
         thankYou: "Takk skal du ha!",
         contactSuccess: "Takk skal du ha! Meldingen din er sendt.",
         faqTitle: "Ofte stilte spørsmål",
+
+        scheduleTitle: "Timeplan for leksjoner",
+        scheduleLevel: "Nivå",
+        scheduleDate: "Periode",
+        scheduleTime: "Leksjonstid",
+        scheduleDays: "Leksjonsdager",
+        scheduleDuration: "Varighet",
+        schedulePrice: "Pris",
+
+        showMore: "Vis mer",
     },
 };
 
