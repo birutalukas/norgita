@@ -4,11 +4,20 @@
 
         <section class="section bg-warm" id="susisiekime">
             <div class="container">
-                <h2 class="section-title text-theme-blue md:text-center">
-                    {{ $t("contactMe") }}
-                </h2>
-
-                <ContactForm />
+                <div
+                    class="block sm:grid sm:grid-cols-12 lg:gap-8 w-full mx-auto"
+                >
+                    <div class="md:col-span-5">
+                        <h2
+                            class="section-title text-theme-blue sm:sticky sm:top-16"
+                        >
+                            {{ $t("contactMe") }}
+                        </h2>
+                    </div>
+                    <div class="md:col-span-7">
+                        <ContactForm />
+                    </div>
+                </div>
             </div>
         </section>
     </div>

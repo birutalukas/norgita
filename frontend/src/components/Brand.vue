@@ -16,6 +16,14 @@
                     alt="Visi Norgita on Facebook"
                     width="30"
                     height="30"
+                    v-if="!dark"
+                />
+                <img
+                    :src="facebookDark"
+                    alt="Visi Norgita on Facebook"
+                    width="30"
+                    height="30"
+                    v-if="dark"
                 />
             </a>
             <a
@@ -27,6 +35,14 @@
                     alt="Visi Norgita on Instagram"
                     width="30"
                     height="30"
+                    v-if="!dark"
+                />
+                <img
+                    :src="instagramDark"
+                    alt="Visi Norgita on Instagram"
+                    width="30"
+                    height="30"
+                    v-if="dark"
                 />
             </a>
         </div>
@@ -36,5 +52,11 @@
 <script setup>
 import logo from "@/assets/logo.svg";
 import facebook from "@/assets/facebook.svg";
+import facebookDark from "@/assets/facebookDark.svg";
 import instagram from "@/assets/instagram.svg";
+import instagramDark from "@/assets/instagramDark.svg";
+
+const props = defineProps({
+    dark: null,
+});
 </script>

@@ -22,10 +22,17 @@
     .section-title {
         @apply text-[2rem] leading-[2.5rem]  md:text-[3.5rem] md:leading-[4rem] tracking-[0.07em]  font-bold mb-8;
     }
+    ul + p,
     p + p {
         @apply mt-6;
     }
 
+    ul {
+        @apply list-disc pl-6;
+        li {
+            @apply pl-2 mt-3;
+        }
+    }
     .fade-enter-active,
     .fade-leave-active {
         @apply transition-opacity duration-[5000] ease-in-out;

@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="w-full">
         <form
             @submit.prevent="submitHandler"
-            class="relative block w-full lg:max-w-[48rem] mx-auto mt-8 md:mt-16 border border-theme-blue rounded-xl p-8 pb-16"
+            class="relative block min-w-full mt-8 md:mt-16 lg:my-0 border border-theme-blue rounded-xl p-8 pb-16"
             v-if="!mailSent"
         >
             <div class="w-full mb-8">
@@ -49,14 +49,21 @@
                     required
                 ></textarea>
             </div>
-            <div class="w-full absolute left-0 bottom-0 translate-y-[.125rem]">
+            <div
+                class="w-[calc(100%+.25rem)] absolute -left-[.125rem] bottom-0 translate-y-[.0625rem]"
+            >
                 <Button :title="$t('send')" type="submit" class="w-full">{{
                     $t("send")
                 }}</Button>
             </div>
         </form>
-        <div v-else class="text-center mt-16">
+
+        <div v-else class="mt-16">
             <p>{{ $t("contactSuccess") }}</p>
+        </div>
+
+        <div class="flex justify-end">
+            <Brand dark="true" />
         </div>
     </div>
 </template>
@@ -64,6 +71,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import Button from "@/components/Button.vue";
+import Brand from "@/components/Brand.vue";
 import { API_BASE_URL } from "@/api";
 
 const props = defineProps({

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Hero :data="heroData" center />
+        <Hero :data="heroData" />
         <section class="section bg-theme-warm">
             <div class="container lg:max-w-[48rem]">
                 <div class="block w-full lg:max-w-[48rem] mx-auto">
@@ -16,12 +16,20 @@
         </section>
 
         <section class="section">
-            <div class="container lg:max-w-[48rem]">
-                <div class="block w-full lg:max-w-[48rem] mx-auto">
-                    <h2 class="section-title text-theme-blue lg:text-center">
-                        {{ $t("registrationTitle") }}
-                    </h2>
-                    <ContactForm :title="heroData?.title" />
+            <div class="container">
+                <div
+                    class="block sm:grid sm:grid-cols-12 lg:gap-8 w-full mx-auto"
+                >
+                    <div class="md:col-span-5">
+                        <h2
+                            class="section-title text-theme-blue sm:sticky sm:top-16"
+                        >
+                            {{ $t("registrationTitle") }}
+                        </h2>
+                    </div>
+                    <div class="md:col-span-7">
+                        <ContactForm :title="heroData?.title" />
+                    </div>
                 </div>
             </div>
         </section>
@@ -30,15 +38,27 @@
             class="section border-t border-theme-blue"
             v-if="faqItems.length"
         >
-            <div class="container lg:max-w-[48rem]">
+            <div class="container">
                 <div
-                    class="block w-full lg:max-w-[48rem] lg:text-center mx-auto"
+                    class="block lg:grid lg:grid-cols-12 lg:gap-8 w-full mx-auto"
                 >
-                    <h2 class="text-theme-blue section-title mb-8">
-                        {{ $t("faqTitle") }}
-                    </h2>
-
-                    <Accordion :items="faqItems" :multiple="false" />
+                    <div class="md:col-span-5">
+                        <h2
+                            class="section-title text-theme-blue sm:sticky sm:top-16"
+                        >
+                            {{ $t("faqTitle") }}
+                        </h2>
+                    </div>
+                    <div class="md:col-span-7">
+                        <div class="ml-auto">
+                            <div class="w-full">
+                                <Accordion
+                                    :items="faqItems"
+                                    :multiple="false"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

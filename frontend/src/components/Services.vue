@@ -1,7 +1,7 @@
 <template>
     <section class="section bg-theme-warm" id="mokymai-ir-paslaugos">
         <div class="container">
-            <h2 class="section-title text-theme-blue md:text-center">
+            <h2 class="section-title text-theme-blue">
                 {{ $t("headingServices") }}
             </h2>
             <div
