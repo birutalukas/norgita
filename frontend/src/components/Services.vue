@@ -1,7 +1,7 @@
 <template>
     <section class="section bg-theme-warm" id="mokymai-ir-paslaugos">
         <div class="container">
-            <h2 class="section-title text-theme-blue">
+            <h2 class="section-title text-theme-blue-dark">
                 {{ $t("headingServices") }}
             </h2>
             <div
@@ -10,14 +10,18 @@
                 <div
                     v-for="service in services"
                     :key="service.id"
-                    class="p-5 pb-8 bg-theme-blue-dark md:text-center flex flex-col justify-between"
+                    class="p-5 pb-8 bg-theme-blue-dark md:text-center flex flex-col justify-between rounded-md"
                 >
                     <div class="mb-8">
-                        <img
-                            v-if="service.PageCover?.formats?.medium?.url"
-                            :src="service.PageCover?.formats?.medium?.url"
-                            class="mb-8 w-full aspect-video object-cover"
-                        />
+                        <div
+                            class="rounded-tl-md rounded-tr-md overflow-hidden"
+                        >
+                            <img
+                                v-if="service.PageCover?.formats?.medium?.url"
+                                :src="service.PageCover?.formats?.medium?.url"
+                                class="mb-8 w-full aspect-video object-cover"
+                            />
+                        </div>
 
                         <h3
                             class="text-theme-warm text-[1.5rem] leading-8 tracking-[0.07em] font-bold mb-3"

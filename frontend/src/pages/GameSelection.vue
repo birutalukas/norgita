@@ -1,7 +1,9 @@
 <template>
     <section class="section">
-        <div class="container text-center">
-            <h1 class="section-title">Savarankiško mokymosi užduotys</h1>
+        <div class="container">
+            <h1 class="section-title text-theme-blue-dark">
+                Savarankiško mokymosi užduotys
+            </h1>
 
             <div
                 class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8 md:mt-16"
@@ -9,7 +11,7 @@
                 <div
                     v-for="dictionary in dictionaries"
                     :key="dictionary.id"
-                    class="p-5 pb-8 bg-theme-blue-dark md:text-center flex flex-col justify-between"
+                    class="p-5 pb-8 bg-theme-blue-dark md:text-center flex flex-col justify-between rounded-md"
                 >
                     <div class="mb-8">
                         <img

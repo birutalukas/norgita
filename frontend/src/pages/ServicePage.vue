@@ -22,7 +22,7 @@
                 >
                     <div class="md:col-span-5">
                         <h2
-                            class="section-title text-theme-blue sm:sticky sm:top-16"
+                            class="section-title text-theme-blue-dark sm:sticky sm:top-16"
                         >
                             {{ $t("registrationTitle") }}
                         </h2>
@@ -44,7 +44,7 @@
                 >
                     <div class="md:col-span-5">
                         <h2
-                            class="section-title text-theme-blue sm:sticky sm:top-16"
+                            class="section-title text-theme-blue-dark sm:sticky sm:top-16"
                         >
                             {{ $t("faqTitle") }}
                         </h2>

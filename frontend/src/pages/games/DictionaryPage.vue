@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <section class="section">
-            <h1 class="section-title text-theme-blue text-center">
+    <section class="section bg-theme-warm">
+        <div class="container">
+            <h1 class="section-title text-theme-blue-dark">
                 {{ pageTitle }}
             </h1>
 
@@ -13,7 +13,7 @@
                 >
                     <div class="p-4 min-h-96">
                         <div
-                            class="border border-blue-200 rounded-xl shadow-md p-8 flex flex-col items-center justify-center relative min-h-full"
+                            class="border border-theme-blue-dark bg-white rounded-md shadow-md p-8 flex flex-col items-center justify-center relative min-h-full"
                         >
                             <p class="font-bold text-xl my-4">
                                 {{ word.main }}
@@ -21,14 +21,14 @@
 
                             <button
                                 @click="toggleTranslation(word.id)"
-                                class="absolute border border-blue-200 rounded-full w-10 h-10 top-8 right-8"
+                                class="absolute border border-theme-blue-light rounded-full w-10 h-10 top-8 right-8"
                             >
                                 i
                             </button>
 
                             <button
                                 @click="playAudio(word.audio)"
-                                class="border border-blue-200 rounded-full w-10 h-10 mb-8"
+                                class="border border-theme-blue-light rounded-full w-10 h-10 mb-8"
                             >
                                 🔊
                             </button>
@@ -52,9 +52,9 @@
                                 @click="toggleStatus(word.id)"
                                 class="min-w-full py-3 mt-8 transition-all duration-300"
                                 :class="{
-                                    'bg-green-500 text-white font-semibold rounded-xl shadow-md hover:bg-green-600':
+                                    'bg-green-700 text-white font-semibold rounded-xl shadow-md hover:bg-green-600':
                                         word.status === 'known',
-                                    'bg-theme-blue text-white font-semibold rounded-xl shadow-md hover:bg-blue-600':
+                                    'bg-theme-blue text-white font-semibold rounded-xl shadow-md hover:bg-theme-blue-light':
                                         word.status !== 'known',
                                 }"
                             >
@@ -68,8 +68,8 @@
                     </div>
                 </swiper-slide>
             </swiper-container>
-        </section>
-    </div>
+        </div>
+    </section>
 </template>
 
 <script setup>
