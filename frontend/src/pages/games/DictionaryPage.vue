@@ -11,60 +11,59 @@
                     :key="word.id"
                     style="overflow: visible"
                 >
-                    <div class="p-4 min-h-96">
-                        <div
-                            class="border border-theme-blue-dark bg-white rounded-md shadow-md p-8 flex flex-col items-center justify-center relative min-h-full"
+                    <div
+                        class="border border-theme-blue-dark bg-white rounded-md shadow-md p-8 flex flex-col items-center justify-center relative min-h-full"
+                    >
+                        <p class="font-bold text-xl my-4">
+                            {{ word.main }}
+                        </p>
+                        <button
+                            @click="toggleTranslation(word.id)"
+                            class="absolute border border-theme-blue-light rounded-full w-10 h-10 top-8 right-8"
                         >
-                            <p class="font-bold text-xl my-4">
-                                {{ word.main }}
-                            </p>
+                            i
+                        </button>
 
-                            <button
-                                @click="toggleTranslation(word.id)"
-                                class="absolute border border-theme-blue-light rounded-full w-10 h-10 top-8 right-8"
-                            >
-                                i
-                            </button>
+                        <button
+                            @click="playAudio(word.audio)"
+                            class="border border-theme-blue-light rounded-full w-10 h-10 mb-8"
+                            v-if="word.audio"
+                        >
+                            🔊
+                        </button>
 
-                            <button
-                                @click="playAudio(word.audio)"
-                                class="border border-theme-blue-light rounded-full w-10 h-10 mb-8"
-                            >
-                                🔊
-                            </button>
-
-                            <div
-                                class="overflow-hidden transition-[height] duration-300 ease-in-out"
-                                :style="{
-                                    height:
-                                        expandedWordId === word.id
-                                            ? translationHeights[word.id] + 'px'
-                                            : '0px',
-                                }"
-                                ref="translationRefs"
-                                :ref_for="true"
-                                :ref_key="word.id"
-                            >
-                                <p class="text-lg">{{ word.translation }}</p>
-                            </div>
-
-                            <button
-                                @click="toggleStatus(word.id)"
-                                class="min-w-full py-3 mt-8 transition-all duration-300"
-                                :class="{
-                                    'bg-green-700 text-white font-semibold rounded-xl shadow-md hover:bg-green-600':
-                                        word.status === 'known',
-                                    'bg-theme-blue text-white font-semibold rounded-xl shadow-md hover:bg-theme-blue-light':
-                                        word.status !== 'known',
-                                }"
-                            >
-                                {{
-                                    word.status === "known"
-                                        ? "Moku"
-                                        : "Mokysiuosi"
-                                }}
-                            </button>
+                        <div
+                            class="overflow-hidden transition-[height] duration-300 ease-in-out"
+                            :style="{
+                                height:
+                                    expandedWordId === word.id
+                                        ? translationHeights[word.id] + 'px'
+                                        : '0px',
+                            }"
+                            :ref="
+                                (el) => {
+                                    if (el) translationRefs[word.id] = el;
+                                    else delete translationRefs[word.id];
+                                }
+                            "
+                        >
+                            <p class="text-lg">{{ word.translation }}</p>
                         </div>
+
+                        <button
+                            @click="toggleStatus(word.id)"
+                            class="min-w-full py-3 mt-8 transition-all duration-300"
+                            :class="{
+                                'bg-green-700 text-white font-semibold rounded-xl shadow-md hover:bg-green-600':
+                                    word.status === 'known',
+                                'bg-theme-blue text-white font-semibold rounded-xl shadow-md hover:bg-theme-blue-light':
+                                    word.status !== 'known',
+                            }"
+                        >
+                            {{
+                                word.status === "known" ? "Moku" : "Mokysiuosi"
+                            }}
+                        </button>
                     </div>
                 </swiper-slide>
             </swiper-container>
@@ -107,6 +106,7 @@ const toggleTranslation = async (id) => {
 
 const updateTranslationHeight = (id) => {
     const el = translationRefs.value[id];
+
     if (el) {
         translationHeights[id] = el.scrollHeight;
     }
@@ -135,6 +135,7 @@ const filteredWords = computed(() => {
 // Toggle status (e.g., known/learning)
 function toggleStatus(id) {
     const word = words.value[selectedLang.value].find((w) => w.id === id);
+
     if (word) {
         word.status = word.status === "known" ? "learning" : "known";
     }
@@ -143,8 +144,7 @@ function toggleStatus(id) {
 // Sync initially
 selectedLang.value = languageStore.currentLang;
 
-onMounted(async () => {
-    console.log("pageID", pageID);
+async function loadContent(lang) {
     try {
         const response = await fetchData("/dictionaries/?populate=*");
 
@@ -172,15 +172,22 @@ onMounted(async () => {
             translation: word.Word,
             status: "learning",
         }));
+
+        loader.isLoading = false;
     } catch (error) {
         console.error("Failed to fetch dictionaries:", error);
+        loader.isLoading = false;
     }
+}
+
+onMounted(async () => {
+    loadContent(languageStore.currentLang);
 
     const swiperParams = {
         slidesPerView: 1,
         loop: true,
         pagination: true,
-
+        spaceBetween: 32,
         breakpoints: {
             0: { slidesPerView: 1 },
             640: { slidesPerView: 2 },
@@ -203,6 +210,8 @@ watch(
     () => languageStore.currentLang,
     (newLang) => {
         selectedLang.value = newLang;
+
+        loadContent(languageStore.currentLang);
     }
 );
 watch(openedTranslationId, (newVal, oldVal) => {
