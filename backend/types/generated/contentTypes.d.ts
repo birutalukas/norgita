@@ -641,6 +641,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    Schedule: Schema.Attribute.Component<'content.schedule', true>;
     Slug: Schema.Attribute.UID & Schema.Attribute.Required;
     SortOrder: Schema.Attribute.Integer;
     Title: Schema.Attribute.String;

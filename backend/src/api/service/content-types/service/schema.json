@@ -67,6 +67,12 @@
     },
     "Title": {
       "type": "string"
+    },
+    "Schedule": {
+      "displayName": "Schedule",
+      "type": "component",
+      "repeatable": true,
+      "component": "content.schedule"
     }
   }
 }

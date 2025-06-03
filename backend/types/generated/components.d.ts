@@ -26,6 +26,32 @@ export interface ContentAccordion extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentSchedule extends Struct.ComponentSchema {
+  collectionName: 'components_content_schedules';
+  info: {
+    displayName: 'Schedule';
+    icon: 'connector';
+  };
+  attributes: {
+    CourseEndDate: Schema.Attribute.Date;
+    CourseEndTime: Schema.Attribute.Time;
+    CourseStartDate: Schema.Attribute.Date;
+    CourseStartTime: Schema.Attribute.Time;
+    Friday: Schema.Attribute.Boolean;
+    Level: Schema.Attribute.Enumeration<
+      ['A1.1', 'A1.2', 'A2.1', 'A2.2', 'B1.1', 'B1.2', 'B2.1', 'B2.2']
+    >;
+    Monday: Schema.Attribute.Boolean;
+    Price: Schema.Attribute.Integer;
+    Saturday: Schema.Attribute.Boolean;
+    Sunday: Schema.Attribute.Boolean;
+    Thursday: Schema.Attribute.Boolean;
+    TimeTotal: Schema.Attribute.String;
+    Tuesday: Schema.Attribute.Boolean;
+    Wednesday: Schema.Attribute.Boolean;
+  };
+}
+
 export interface DictionaryDictionary extends Struct.ComponentSchema {
   collectionName: 'components_dictionary_dictionaries';
   info: {
@@ -45,6 +71,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'cards.card-info': CardsCardInfo;
       'content.accordion': ContentAccordion;
+      'content.schedule': ContentSchedule;
       'dictionary.dictionary': DictionaryDictionary;
     }
   }

@@ -1,0 +1,62 @@
+{
+  "collectionName": "components_content_schedules",
+  "info": {
+    "displayName": "Schedule",
+    "icon": "connector"
+  },
+  "options": {},
+  "attributes": {
+    "CourseStartDate": {
+      "type": "date"
+    },
+    "CourseEndDate": {
+      "type": "date"
+    },
+    "Monday": {
+      "type": "boolean"
+    },
+    "Tuesday": {
+      "type": "boolean"
+    },
+    "Wednesday": {
+      "type": "boolean"
+    },
+    "Thursday": {
+      "type": "boolean"
+    },
+    "Friday": {
+      "type": "boolean"
+    },
+    "Saturday": {
+      "type": "boolean"
+    },
+    "Sunday": {
+      "type": "boolean"
+    },
+    "CourseStartTime": {
+      "type": "time"
+    },
+    "CourseEndTime": {
+      "type": "time"
+    },
+    "Level": {
+      "type": "enumeration",
+      "enum": [
+        "A1.1",
+        "A1.2",
+        "A2.1",
+        "A2.2",
+        "B1.1",
+        "B1.2",
+        "B2.1",
+        "B2.2"
+      ]
+    },
+    "TimeTotal": {
+      "type": "string"
+    },
+    "Price": {
+      "type": "integer"
+    }
+  }
+}
