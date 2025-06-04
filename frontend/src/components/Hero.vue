@@ -6,7 +6,7 @@
         <img
             :src="data?.image?.url"
             alt=""
-            class="min-h-full min-w-full object-cover absolute inset-0"
+            class="min-h-full min-w-full object-cover absolute"
         />
         <div class="container relative z-10">
             <div class="max-w-[35rem] flex flex-col items-start gap-4 md:gap-8">
