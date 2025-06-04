@@ -17,7 +17,7 @@ const messages = {
         message: "Žinutė",
         send: "Siųsti",
         thankYou: "Ačiū!",
-        contactSuccess: "Ačiū! Jūsų žinutė buvo sėkmingai išsiųsta.",
+        contactSuccess: "Jūsų žinutė buvo sėkmingai išsiųsta.",
         faqTitle: "Dažniausiai užduodami klausimai",
 
         scheduleTitle: "Pamokų tvarkaraštis",
@@ -45,7 +45,7 @@ const messages = {
         message: "Beskjed",
         send: "Sende",
         thankYou: "Takk skal du ha!",
-        contactSuccess: "Takk skal du ha! Meldingen din er sendt.",
+        contactSuccess: "Meldingen din er sendt.",
         faqTitle: "Ofte stilte spørsmål",
 
         scheduleTitle: "Timeplan for leksjoner",

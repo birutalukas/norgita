@@ -13,8 +13,8 @@
                 <span> {{ item.Title }} </span>
 
                 <span
-                    class="transition-all duration-300"
-                    :class="{ 'rotate-180': isOpen(index) }"
+                    class="origin-center transition-all duration-300"
+                    :class="{ 'scale-y-[-1]': isOpen(index) }"
                     >⌄</span
                 >
             </button>
@@ -38,7 +38,7 @@
 import { ref, nextTick } from "vue";
 import { renderContent } from "@/helpers/render";
 import gsap from "gsap";
-
+import { lenis } from "@/scripts/smoothScroll.js";
 const props = defineProps({
     items: {
         type: Array,
@@ -46,13 +46,11 @@ const props = defineProps({
     },
 });
 
-const openIndexes = ref([]);
+const openIndexes = ref([0]);
 
 function toggle(index) {
     const isOpened = isOpen(index);
-    if (isOpened) {
-        close(index);
-    } else {
+    if (!isOpened) {
         open(index);
     }
 }
@@ -62,6 +60,10 @@ function isOpen(index) {
 }
 
 function open(index) {
+    openIndexes.value.forEach((index) => {
+        close(index);
+    });
+
     openIndexes.value.push(index);
     nextTick(() => {
         const el = document.querySelector(`#body-${index}`);
@@ -75,6 +77,16 @@ function open(index) {
                     duration: 0.4,
                     ease: "power2.out",
                     clearProps: "height",
+                    onComplete: () => {
+                        lenis.scrollTo(el, {
+                            offset: -130,
+                            duration: 0.4,
+                            easing: (t) =>
+                                t < 0.5
+                                    ? 4 * t * t * t
+                                    : 1 - Math.pow(-2 * t + 2, 3) / 2,
+                        });
+                    },
                 }
             );
         }
